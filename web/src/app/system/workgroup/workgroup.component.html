@@ -1,0 +1,57 @@
+<div class="search-list-wrap" >
+    <div class="card">
+        <div class="card-header text-headline border-0 bg-transparent pt-3 relative">
+            <h6 class="border-theme border-left-1 p-1 pl-2 pb-0 mb-0 text-headline">工作组查询</h6>
+            <div class="card-header-right center">
+                <div class="header-search-input">
+                    <input type="text" [(ngModel)]="pagination.work_group_name" placeholder="工作组名称" (keyup.enter)="search()">
+                    <a (click)="search()">查询</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-block mt-0 pt-0">
+            <table class="table custom-table table-striped table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th width="60px">序号</th>
+                    <th>工作组名称</th>
+                    <th width="120px">创建日期</th>
+                    <th width="400px">备注</th>
+                    <th width="120px">
+                        操作
+                        <a class="btn btn-sm iconfont icon-plus text-success" title="新增" (click)="add()"></a>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="text-center" *ngFor="let item of workgroupList;let i = index;" id="{{item.work_group_id}}">
+                    <td class="text-primary">{{i+1}}</td>
+                    <td class="text-left">[{{item.code}}]{{item.work_group_name}}</td>
+                    <td>{{item.create_date| datefmt:'yyyy-MM-dd'}}</td>
+                    <td>
+                        <p class="text-left break nowrap" style="width: 400px;height: 1.25rem;">{{item.notes}}</p>
+                    </td>
+                    <td>
+                        <a class="btn btn-sm iconfont icon-edit text-info" title="编辑" (click)="edit(item)"></a>
+                        <a class="btn btn-sm iconfont icon-delete text-danger" title="删除" (click)="delete(item)"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <ai-pagination [pageSize]="pagination.page_size" [collectionSize]="pagination.row_count"
+                           [pageNo]="pagination.page_no" *ngIf="pagination.row_count"
+                           (onPageChange)="onPageChange($event)"></ai-pagination>
+            <div class="text-base text-info text-center" *ngIf="!pagination.row_count">
+                <p>没有匹配的数据</p>
+            </div>
+        </div>
+    </div>
+    <div class="right-model" *ngIf="currentItem">
+        <div class="right-model-bg" *ngIf="rightModel === 'show'" (click)="closeRight(0)"></div>
+        <div class="right-model-content" [class.right-fade-in]="rightModel==='show'"
+             [class.right-fade-out]="rightModel==='hide'" [ngStyle]="{width:'75%',height:'90%'}">
+            <ai-system-workgroup-edit [workgroup]="currentItem" (onSubmitSuccess)="onSubmitSuccess($event)"
+                                    (onCancel)="closeRight($event)"></ai-system-workgroup-edit>
+        </div>
+    </div>
+</div>

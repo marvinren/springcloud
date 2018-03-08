@@ -1,0 +1,59 @@
+<div class="demand-step-wrap card border-0 ">
+    <div class="card-block p-0 center ">
+        <div class="step center justify-content-start">
+            <div class="step-box center"
+                 [ngClass]="{'step-box-ing':step === 1,'step-box-wait':step < 1,'step-box-finished':step > 1}">
+                <div class="step-box-icon center"><i class="iconfont icon-approval"></i></div>
+                <div class="step-box-line"></div>
+                <span class="step-box-title">审批</span>
+            </div>
+            <div class="step-box center"
+                 [ngClass]="{'step-box-ing':step === 2,'step-box-wait':step < 2,'step-box-finished':step > 2}">
+                <div class="step-box-icon center"><i class="iconfont icon-analysis"></i></div>
+                <div class="step-box-line"></div>
+                <span class="step-box-title">分析</span>
+            </div>
+            <div class="step-box center"
+                 [ngClass]="{'step-box-ing':step === 3,'step-box-wait':step < 3,'step-box-finished':step > 3}">
+                <div class="step-box-icon center"><i class="iconfont icon-develop"></i></div>
+                <div class="step-box-line"></div>
+                <span class="step-box-title">开发</span>
+            </div>
+            <div class="step-box center"
+                 [ngClass]="{'step-box-ing':step === 4,'step-box-wait':step < 4,'step-box-finished':step > 4}">
+                <div class="step-box-icon center"><i class="iconfont icon-test"></i></div>
+                <div class="step-box-line"></div>
+                <span class="step-box-title">测试</span>
+            </div>
+            <div class="step-box center"
+                 [ngClass]="{'step-box-ing':step === 5,'step-box-wait':step < 5,'step-box-finished':step > 5}">
+                <div class="step-box-icon center"><i class="iconfont icon-issue"></i></div>
+                <div class="step-box-line"></div>
+                <span class="step-box-title">发布</span>
+            </div>
+            <div class="step-box center"
+                 [ngClass]="{'step-box-ing':step === 6,'step-box-wait':step < 6,'step-box-finished':step > 6}">
+                <div class="step-box-icon center"><i class="iconfont icon-poject-deliver"></i></div>
+                <div class="step-box-line"></div>
+                <span class="step-box-title">交付</span>
+            </div>
+            <div class="step-box center"
+                 [ngClass]="{'step-box-ing':step === 7,'step-box-wait':step < 7,'step-box-finished':step > 7}">
+                <div class="step-box-icon center"><i class="iconfont icon-evaluate"></i></div>
+                <div class="step-box-line"></div>
+                <span class="step-box-title">评估</span>
+            </div>
+        </div>
+        <div class="range">
+            <div class="range-title">需求分析阶段</div>
+            <div class="range-bar thin">
+                <ngb-progressbar max="100" [value]="progress"
+                                 type="green"></ngb-progressbar>
+                <div class="bubble bubble-up bubble-ellipse" [style.left]="progress+'%'">
+                    <p class="bubble-content">{{progress}}%</p>
+                    <i class="bubble-arrow bubble-arrow-left"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

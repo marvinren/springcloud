@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="DSYXHDProcess" name="分公司营销活动流程" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="subCompanySign" name="分公司各部会签">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXReqSignTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXReqSignTaskListener}"></activiti:taskListener>
+      </extensionElements>
+      <multiInstanceLoopCharacteristics isSequential="false" activiti:collection="staffList" activiti:elementVariable="staffId">
+        <completionCondition>${nrOfCompletedInstances/nrOfInstances == 1}</completionCondition>
+      </multiInstanceLoopCharacteristics>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="subCompanySign"></sequenceFlow>
+    <userTask id="submitDivisionManager" name="申请部门主管副总">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="zqMarketingLeading" name="政企营销负责人">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXReqSignTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeABBAreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+      <multiInstanceLoopCharacteristics isSequential="false" activiti:collection="staffList" activiti:elementVariable="staffId">
+        <completionCondition>${nrOfCompletedInstances/nrOfInstances == 1}</completionCondition>
+      </multiInstanceLoopCharacteristics>
+    </userTask>
+    <sequenceFlow id="flow3" name="zqMarketingLeading" sourceRef="submitDivisionManager" targetRef="zqMarketingLeading">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='zqMarketingLeading'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="scMarketingLeadingAB" name="市场部营销策划室">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXReqSignTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeABBAreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+      <multiInstanceLoopCharacteristics isSequential="false" activiti:collection="staffList" activiti:elementVariable="staffId">
+        <completionCondition>${nrOfCompletedInstances/nrOfInstances == 1}</completionCondition>
+      </multiInstanceLoopCharacteristics>
+    </userTask>
+    <sequenceFlow id="flow4" name="scMarketingLeadingAB" sourceRef="submitDivisionManager" targetRef="scMarketingLeadingAB">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='scMarketingLeadingAB'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="modify" name="申请人修改">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow5" name="modify" sourceRef="submitDivisionManager" targetRef="modify">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='modify'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="zqMarketingLeading" targetRef="zqCompanySign"></sequenceFlow>
+    <userTask id="zqMarketingLeadingSummary" name="政企营销负责人汇总">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow7" sourceRef="zqCompanySign" targetRef="zqMarketingLeadingSummary"></sequenceFlow>
+    <sequenceFlow id="flow8" name="modify" sourceRef="zqMarketingLeadingSummary" targetRef="modify">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='modify'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="scCompanySign" name="区公司各部门会签(市场)">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXReqSignTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXReqSignTaskListener}"></activiti:taskListener>
+      </extensionElements>
+      <multiInstanceLoopCharacteristics isSequential="false" activiti:collection="staffList" activiti:elementVariable="staffId">
+        <completionCondition>${nrOfCompletedInstances/nrOfInstances == 1}</completionCondition>
+      </multiInstanceLoopCharacteristics>
+    </userTask>
+    <sequenceFlow id="flow9" sourceRef="scMarketingLeadingAB" targetRef="scCompanySign"></sequenceFlow>
+    <userTask id="scMarketingLeadingSummary" name="市场部营销策划室负责人汇总">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow10" sourceRef="scCompanySign" targetRef="scMarketingLeadingSummary"></sequenceFlow>
+    <userTask id="scMarketingThree" name="市场部营销策划室三级经理审批">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow11" name="scMarketingThree" sourceRef="scMarketingLeadingSummary" targetRef="scMarketingThree">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='scMarketingThree'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow12" name="modify" sourceRef="scMarketingLeadingSummary" targetRef="modify">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='modify'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="scMarketingTwo" name="市场部二级经理审批">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow13" name="scMarketingTwo" sourceRef="scMarketingThree" targetRef="scMarketingTwo">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='scMarketingTwo'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="yzAssign" name="业务管理部三级经理审批并分派">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow14" name="yzAssign" sourceRef="scMarketingTwo" targetRef="yzAssign">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='yzAssign'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="yzPracticeVerify" name="业支实施人员审核">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow15" sourceRef="yzAssign" targetRef="yzPracticeVerify"></sequenceFlow>
+    <sequenceFlow id="flow16" name="zqThreeMgr" sourceRef="zqMarketingLeadingSummary" targetRef="zqThreeMgr">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='zqThreeMgr'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="yzPracticeSend" name="业支实施人员配置后发送测试通知">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow17" name="yzPracticeSend" sourceRef="yzPracticeVerify" targetRef="yzPracticeSend">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='yzPracticeSend'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow18" name="modify" sourceRef="yzPracticeVerify" targetRef="modify">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='modify'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="submitTest" name="业务测试人员测试并发送测试报告">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow19" sourceRef="yzPracticeSend" targetRef="submitTest"></sequenceFlow>
+    <userTask id="yzPracticeCheck" name="业支实施人员查看测试报告">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow20" sourceRef="submitTest" targetRef="yzPracticeCheck"></sequenceFlow>
+    <userTask id="yzPracticeModify" name="业支实施人员修改配置">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow21" name="yzPracticeModify" sourceRef="yzPracticeCheck" targetRef="yzPracticeModify">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='yzPracticeModify'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow22" sourceRef="yzPracticeModify" targetRef="submitTest"></sequenceFlow>
+    <userTask id="yzPracticeRelease" name="业支实施人员通知上线">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow23" name="yzPracticeRelease" sourceRef="yzPracticeCheck" targetRef="yzPracticeRelease">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='yzPracticeRelease'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="submitConfirm" name="申请人确认">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow24" sourceRef="yzPracticeRelease" targetRef="submitConfirm"></sequenceFlow>
+    <userTask id="yzPracticeConfirm" name="业支实施人员确认跟踪报告">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow25" sourceRef="submitConfirm" targetRef="yzPracticeConfirm"></sequenceFlow>
+    <sequenceFlow id="flow26" name="modify" sourceRef="scMarketingTwo" targetRef="modify">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='modify'}]]></conditionExpression>
+    </sequenceFlow>
+    <endEvent id="endevent1" name="End">
+      <extensionElements>
+        <activiti:executionListener event="end" delegateExpression="#{endDSYXreqTaskListener}"></activiti:executionListener>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="flow29" sourceRef="yzPracticeConfirm" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow30" name="dsyxEnd" sourceRef="modify" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='dsyxEnd'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow31" name="modify" sourceRef="scMarketingThree" targetRef="modify">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='modify'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow32" name="subCompanySign" sourceRef="modify" targetRef="subCompanySign">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='subCompanySign'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="applyDeptThree" name="申请部三级经理审核">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow33" sourceRef="subCompanySign" targetRef="applyDeptThree"></sequenceFlow>
+    <sequenceFlow id="flow34" sourceRef="applyDeptThree" targetRef="submitDivisionManager"></sequenceFlow>
+    <sequenceFlow id="flow35" name="submitConfirm" sourceRef="yzPracticeVerify" targetRef="submitConfirm">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='submitConfirm'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="zqCompanySign" name="区公司各部门会签(政企)">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXReqSignTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXReqSignTaskListener}"></activiti:taskListener>
+      </extensionElements>
+      <multiInstanceLoopCharacteristics isSequential="false" activiti:collection="staffList" activiti:elementVariable="staffId">
+        <completionCondition>${nrOfCompletedInstances/nrOfInstances == 1}</completionCondition>
+      </multiInstanceLoopCharacteristics>
+    </userTask>
+    <userTask id="zqSecondMgr" name="政企部营销策划室二级经理审批">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="zqThreeMgr" name="政企部营销策划室三级经理审批">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createDSYXreqTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeDSYXreqTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow36" sourceRef="zqThreeMgr" targetRef="zqSecondMgr"></sequenceFlow>
+    <sequenceFlow id="flow37" sourceRef="zqSecondMgr" targetRef="yzAssign"></sequenceFlow>
+    <sequenceFlow id="flow38" name="scMarketingLeadingAB" sourceRef="scMarketingThree" targetRef="scMarketingLeadingAB">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='scMarketingLeadingAB'}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_DSYXHDProcess">
+    <bpmndi:BPMNPlane bpmnElement="DSYXHDProcess" id="BPMNPlane_DSYXHDProcess">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="50.0" y="40.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="subCompanySign" id="BPMNShape_subCompanySign">
+        <omgdc:Bounds height="55.0" width="105.0" x="130.0" y="30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="submitDivisionManager" id="BPMNShape_submitDivisionManager">
+        <omgdc:Bounds height="55.0" width="105.0" x="450.0" y="30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="zqMarketingLeading" id="BPMNShape_zqMarketingLeading">
+        <omgdc:Bounds height="55.0" width="105.0" x="690.0" y="30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scMarketingLeadingAB" id="BPMNShape_scMarketingLeadingAB">
+        <omgdc:Bounds height="55.0" width="105.0" x="130.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="modify" id="BPMNShape_modify">
+        <omgdc:Bounds height="55.0" width="105.0" x="450.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="zqMarketingLeadingSummary" id="BPMNShape_zqMarketingLeadingSummary">
+        <omgdc:Bounds height="55.0" width="105.0" x="1027.0" y="30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scCompanySign" id="BPMNShape_scCompanySign">
+        <omgdc:Bounds height="55.0" width="105.0" x="130.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scMarketingLeadingSummary" id="BPMNShape_scMarketingLeadingSummary">
+        <omgdc:Bounds height="55.0" width="105.0" x="280.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scMarketingThree" id="BPMNShape_scMarketingThree">
+        <omgdc:Bounds height="55.0" width="105.0" x="130.0" y="310.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scMarketingTwo" id="BPMNShape_scMarketingTwo">
+        <omgdc:Bounds height="55.0" width="105.0" x="450.0" y="310.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="yzAssign" id="BPMNShape_yzAssign">
+        <omgdc:Bounds height="55.0" width="105.0" x="800.0" y="310.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="yzPracticeVerify" id="BPMNShape_yzPracticeVerify">
+        <omgdc:Bounds height="55.0" width="105.0" x="950.0" y="310.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="yzPracticeSend" id="BPMNShape_yzPracticeSend">
+        <omgdc:Bounds height="55.0" width="105.0" x="1100.0" y="310.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="submitTest" id="BPMNShape_submitTest">
+        <omgdc:Bounds height="55.0" width="105.0" x="1250.0" y="310.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="yzPracticeCheck" id="BPMNShape_yzPracticeCheck">
+        <omgdc:Bounds height="55.0" width="105.0" x="1250.0" y="400.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="yzPracticeModify" id="BPMNShape_yzPracticeModify">
+        <omgdc:Bounds height="55.0" width="105.0" x="1400.0" y="400.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="yzPracticeRelease" id="BPMNShape_yzPracticeRelease">
+        <omgdc:Bounds height="55.0" width="105.0" x="1100.0" y="400.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="submitConfirm" id="BPMNShape_submitConfirm">
+        <omgdc:Bounds height="55.0" width="105.0" x="800.0" y="400.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="yzPracticeConfirm" id="BPMNShape_yzPracticeConfirm">
+        <omgdc:Bounds height="55.0" width="105.0" x="800.0" y="500.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="835.0" y="580.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="applyDeptThree" id="BPMNShape_applyDeptThree">
+        <omgdc:Bounds height="55.0" width="105.0" x="280.0" y="30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="zqCompanySign" id="BPMNShape_zqCompanySign">
+        <omgdc:Bounds height="55.0" width="105.0" x="869.0" y="30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="zqSecondMgr" id="BPMNShape_zqSecondMgr">
+        <omgdc:Bounds height="55.0" width="105.0" x="1027.0" y="192.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="zqThreeMgr" id="BPMNShape_zqThreeMgr">
+        <omgdc:Bounds height="55.0" width="105.0" x="1027.0" y="110.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="85.0" y="57.0"></omgdi:waypoint>
+        <omgdi:waypoint x="130.0" y="57.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="555.0" y="57.0"></omgdi:waypoint>
+        <omgdi:waypoint x="690.0" y="57.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="96.0" x="559.0" y="30.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="502.0" y="85.0"></omgdi:waypoint>
+        <omgdi:waypoint x="182.0" y="120.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="42.0" width="100.0" x="467.0" y="92.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="502.0" y="85.0"></omgdi:waypoint>
+        <omgdi:waypoint x="502.0" y="200.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="32.0" x="532.0" y="106.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="795.0" y="57.0"></omgdi:waypoint>
+        <omgdi:waypoint x="869.0" y="57.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="974.0" y="57.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1027.0" y="57.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="1079.0" y="85.0"></omgdi:waypoint>
+        <omgdi:waypoint x="502.0" y="200.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="32.0" x="930.0" y="122.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="182.0" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="182.0" y="200.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="235.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="280.0" y="227.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="332.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="182.0" y="310.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="86.0" x="208.0" y="270.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="385.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="450.0" y="227.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="32.0" x="400.0" y="213.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="235.0" y="337.0"></omgdi:waypoint>
+        <omgdi:waypoint x="450.0" y="337.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="80.0" x="290.0" y="340.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="555.0" y="337.0"></omgdi:waypoint>
+        <omgdi:waypoint x="800.0" y="337.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="46.0" x="579.0" y="340.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="905.0" y="337.0"></omgdi:waypoint>
+        <omgdi:waypoint x="950.0" y="337.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
+        <omgdi:waypoint x="1079.0" y="85.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1079.0" y="110.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="58.0" x="1100.0" y="92.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="1055.0" y="337.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1100.0" y="337.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="76.0" x="1049.0" y="297.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="1002.0" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1002.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="555.0" y="227.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="32.0" x="957.0" y="242.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="1205.0" y="337.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1250.0" y="337.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="1302.0" y="365.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1302.0" y="400.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
+        <omgdi:waypoint x="1355.0" y="427.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1400.0" y="427.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="83.0" x="1353.0" y="456.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="1452.0" y="400.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1452.0" y="337.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1355.0" y="337.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="1250.0" y="427.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1205.0" y="427.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="90.0" x="1207.0" y="456.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
+        <omgdi:waypoint x="1100.0" y="427.0"></omgdi:waypoint>
+        <omgdi:waypoint x="905.0" y="427.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="852.0" y="455.0"></omgdi:waypoint>
+        <omgdi:waypoint x="852.0" y="500.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow26" id="BPMNEdge_flow26">
+        <omgdi:waypoint x="502.0" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="502.0" y="255.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="32.0" x="507.0" y="284.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow29" id="BPMNEdge_flow29">
+        <omgdi:waypoint x="852.0" y="555.0"></omgdi:waypoint>
+        <omgdi:waypoint x="852.0" y="580.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow30" id="BPMNEdge_flow30">
+        <omgdi:waypoint x="502.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="684.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="684.0" y="485.0"></omgdi:waypoint>
+        <omgdi:waypoint x="684.0" y="597.0"></omgdi:waypoint>
+        <omgdi:waypoint x="835.0" y="597.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="42.0" x="587.0" y="298.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow31" id="BPMNEdge_flow31">
+        <omgdi:waypoint x="182.0" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="502.0" y="255.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="32.0" x="277.0" y="274.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow32" id="BPMNEdge_flow32">
+        <omgdi:waypoint x="502.0" y="200.0"></omgdi:waypoint>
+        <omgdi:waypoint x="182.0" y="85.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="84.0" x="393.0" y="162.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow33" id="BPMNEdge_flow33">
+        <omgdi:waypoint x="235.0" y="57.0"></omgdi:waypoint>
+        <omgdi:waypoint x="280.0" y="57.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow34" id="BPMNEdge_flow34">
+        <omgdi:waypoint x="385.0" y="57.0"></omgdi:waypoint>
+        <omgdi:waypoint x="450.0" y="57.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow35" id="BPMNEdge_flow35">
+        <omgdi:waypoint x="1002.0" y="365.0"></omgdi:waypoint>
+        <omgdi:waypoint x="852.0" y="400.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="68.0" x="970.0" y="380.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow36" id="BPMNEdge_flow36">
+        <omgdi:waypoint x="1079.0" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1079.0" y="192.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow37" id="BPMNEdge_flow37">
+        <omgdi:waypoint x="1079.0" y="247.0"></omgdi:waypoint>
+        <omgdi:waypoint x="852.0" y="310.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow38" id="BPMNEdge_flow38">
+        <omgdi:waypoint x="130.0" y="337.0"></omgdi:waypoint>
+        <omgdi:waypoint x="74.0" y="337.0"></omgdi:waypoint>
+        <omgdi:waypoint x="74.0" y="242.0"></omgdi:waypoint>
+        <omgdi:waypoint x="74.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="130.0" y="147.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="42.0" width="100.0" x="11.0" y="227.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

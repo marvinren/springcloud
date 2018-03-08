@@ -1,0 +1,41 @@
+<div class="sidebar home-sidebar-wrap">
+    <div class="card border-0">
+        <div class="form-group row mt-3">
+            <div class="col-5 center text-center pr-0 pl-4">
+                <div class="pie center">
+                    <div class="first-name break nowrap">{{user && user.employee_name}}</div>
+                </div>
+            </div>
+            <div class="col-7 text-center">
+                <div class="hand text-center">
+                    <i class="iconfont icon-dealt-with fs-lg"></i>
+                    <span class="text-success fs-sm">{{workflowOrderTotal && workflowOrderTotal.completed_cnt}}</span>
+                </div>
+                <div class="mt-1 hand text-center">
+                    <i class="iconfont icon-timeout fs-lg"></i>
+                    <span class="text-danger fs-sm">{{workflowOrderTotal && workflowOrderTotal.order_cnt}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-5 text-center pr-0 fs-sm">{{user && user.employee_name}}</div>
+            <div class="col-7 text-center pl-0 fs-sm">{{user && user.organize_name}}</div>
+        </div>
+    </div>
+    <div class="card border-0 mt-4">
+        <ul class="list-group root-group" *ngIf="funTree && funTree.children && funTree.children.length">
+            <li class="list-group-item" *ngFor="let item of funTree.children" [class.active]="currentMenu === item">
+                <span class="list-group-item-heading has-border" (click)="linkTo(item ,true)">
+                    {{item.name}}
+                    <i *ngIf="item.children && item.children.length" class="iconfont text-white icon-right-arrow float-right"
+                       [ngClass]="{ 'rolate90': item.opened}"></i>
+                </span>
+                <ul class="list-group child-group" *ngIf="item.children && item.children.length && item.opened">
+                    <li class="list-group-item" *ngFor="let c of item.children" [class.active]="currentMenu === c">
+                        <span class="list-group-item-heading has-border" (click)="linkTo(c,true)">{{c.name}}</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

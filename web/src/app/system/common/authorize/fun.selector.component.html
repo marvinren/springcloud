@@ -1,0 +1,32 @@
+<div class="card p-0">
+    <div class="card-header card-header-dark border-0 py-1 px-2 relative">
+        <h6 class="p-1 pl-2 mb-0 text-base text-white">功能菜单</h6>
+        <div class="card-header-right center">
+            <div class="header-search-input">
+                <input type="text" [(ngModel)]="keyword" placeholder="名称/编码" (keyup)="searchFuns()">
+                <a class="iconfont icon-search" (click)="searchFuns()"></a>
+            </div>
+        </div>
+    </div>
+    <div class="card-block p-0" aiScrollBar [alwaysShow]="true" [autoTop]="false" [config]="{suppressScrollX:true}">
+        <div class="sys-tree h-100">
+            <div class="sys-tree-root">
+                <div class="sys-tree-root-heading">
+                    <i class="iconfont i-folder hand"
+                       [ngClass]="{'icon-folder-open':orgOpened,'icon-folder-off':!orgOpened}"
+                       *ngIf="funTree && funTree.length" (click)="orgOpened = !orgOpened"></i>
+                    <i class="iconfont icon-folder-off text-gray" *ngIf="!funTree || !funTree.length"></i>
+                    <span class="sys-tree-root-heading-text">组织机构</span>
+                </div>
+            </div>
+            <div class="px-2" [ngClass]="{'show':orgOpened,'hide':!orgOpened}">
+                <ai-system-fun-selector-tree [funTree]="funTree" [selectedItem]="currentItem" [checkbox]="checkbox"
+                                          (onCheck)="_onCheck($event)"   (onSelect)="_onSelectItem($event)"></ai-system-fun-selector-tree>
+            </div>
+        </div>
+    </div>
+    <div class="text-right" *ngIf="needButton">
+        <button class="btn btn-sm btn-primary" (click)="_onsubmit()">确定</button>
+        <button class="btn btn-sm" (click)="_onCancel()">取消</button>
+    </div>
+</div>

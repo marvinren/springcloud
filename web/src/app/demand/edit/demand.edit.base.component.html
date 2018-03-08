@@ -1,0 +1,116 @@
+<div class="card border-0 bg-transparent">
+    <div class="card-header border-0 text-subtitle light-title bg-transparent pt-2 pb-2 pl-1 pr-1">
+        <span>需求基本信息</span>
+    </div>
+    <div class="card-block p-1 pt-4">
+        <div class="form-group form-group-sm row">
+            <label class="col-form-label col-form-label-sm col-1">需求编码</label>
+            <div class="col-3">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="自动生成">
+            </div>
+            <label class="col-form-label col-form-label-sm col-1">需求名称</label>
+            <div class="col-7">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="需求名称">
+            </div>
+        </div>
+        <div class="form-group form-group-sm row">
+            <label class="col-form-label col-form-label-sm col-1">提交公司</label>
+            <div class="col-3">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="需求提交公司">
+            </div>
+            <label class="col-form-label col-form-label-sm col-1">提出部门</label>
+            <div class="col-3">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="需求提出部门">
+            </div>
+            <label class="col-form-label col-form-label-sm col-1">提出人</label>
+            <div class="col-3">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="需求提出人">
+            </div>
+        </div>
+        <div class="form-group form-group-sm row">
+            <label class="col-form-label col-form-label-sm col-1">联系电话</label>
+            <div class="col-3">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="联系电话">
+            </div>
+            <label class="col-form-label col-form-label-sm col-1">联系邮箱</label>
+            <div class="col-3">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="联系邮箱">
+            </div>
+            <label class="col-form-label col-form-label-sm col-1">提出时间</label>
+            <div class="col-3">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="提出时间">
+            </div>
+        </div>
+        <div class="form-group form-group-sm row">
+            <label class="col-form-label col-form-label-sm col-1">需求类型</label>
+            <div class="col-3">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="需求类型">
+            </div>
+            <label class="col-form-label col-form-label-sm col-1">优先级</label>
+            <div class="col-3">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="优先级">
+            </div>
+            <label class="col-form-label col-form-label-sm col-1">完成时间</label>
+            <div class="input-group input-group-sm col-3">
+                <input class="form-control form-control-sm" type="text"
+                       ngbDatepicker #fnDp="ngbDatepicker" (click)="fnDp.toggle();"
+                       placeholder="">
+                <div class="input-group-addon py-0 hand" (click)="fnDp.toggle();">
+                    <i class="iconfont icon-calendar"></i>
+                </div>
+            </div>
+        </div>
+        <div class="form-group form-group-sm row">
+            <label class="col-form-label col-form-label-sm col-1">版本特点</label>
+            <div class="col-3">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="版本特点类型">
+            </div>
+            <label class="col-form-label col-form-label-sm col-1">复杂度</label>
+            <div class="col-3">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="复杂度">
+            </div>
+            <label class="col-form-label col-form-label-sm col-1">使用范围</label>
+            <div class="col-3">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="使用范围">
+            </div>
+        </div>
+        <div class="form-group form-group-sm row">
+            <label class="col-form-label col-form-label-sm col-1">业务模板</label>
+            <div class="col-3">
+                <select class="form-control form-control-sm" [(ngModel)]="template.type">
+                    <option value="1">模板类型1</option>
+                    <option value="2">模板类型2</option>
+                    <option value="3">模板类型3</option>
+                    <option value="4">模板类型4</option>
+                </select>
+            </div>
+            <label class="col-form-label col-form-label-sm col-1">支撑系统</label>
+            <div class="col-7">
+                <input class="form-control form-control-sm" type="text"
+                       placeholder="业务支撑系统">
+            </div>
+        </div>
+        <div class="form-group form-group-sm row">
+            <label class="col-form-label col-form-label-sm col-1">特点类型</label>
+            <div class="col-11">
+                <textarea class="form-control form-control-sm textarea"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="mt-2">
+        <button type="button" class="btn btn-theme text-white border-radius hand float-right">下一步>></button>
+    </div>
+</div>

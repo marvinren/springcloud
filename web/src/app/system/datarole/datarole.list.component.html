@@ -1,0 +1,54 @@
+<div class="card border-0 vcenter-wrap">
+    <div class="vcenter-wrap-head card-header card-header-dark border-0 py-1 px-2 relative" ngbDropdown>
+        <h6 class="p-1 pl-2 pb-0 mb-0 text-base text-white">数据权限列表</h6>
+        <div class="card-header-right center">
+            <div class="header-search-input">
+                <input type="text" [(ngModel)]="pagination.keyword" placeholder="名称、编码" (keyup.enter)="search()">
+                <a class="iconfont icon-search" (click)="search()"></a>
+            </div>
+        </div>
+    </div>
+    <div class="vcenter-wrap-content card-block mt-0 p-0 text-base" aiScrollBar [alwaysShow]="true" [autoTop]="false"
+         [config]="{suppressScrollX:true}">
+        <table class="table custom-table table-striped table-condensed table-hover">
+            <thead>
+            <tr>
+                <th width="60px">序号</th>
+                <th>权限名称</th>
+                <th>编码</th>
+                <th>备注</th>
+                <th width="120px">操作
+                    <a class="btn btn-sm iconfont icon-plus text-success" title="新增" (click)="add()"></a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center" *ngFor="let item of list;let i = index;" id="{{item.staff_id}}">
+                <td class="text-primary">{{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.code}}</td>
+                <td>{{item.notes}}</td>
+                <td>
+                    <a class="btn btn-sm iconfont icon-edit text-info" title="编辑" (click)="edit(item)"></a>
+                    <a class="btn btn-sm iconfont icon-delete text-danger" title="删除"
+                       (click)="delete(item)"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <ai-pagination [pageSize]="pagination.page_size" [collectionSize]="pagination.row_count"
+                       [(pageNo)]="pagination.page_no" *ngIf="pagination.row_count"
+                       (onPageChange)="onPageChange($event)"></ai-pagination>
+        <div class="text-base text-info text-center" *ngIf="!pagination.row_count">
+            <p>没有匹配的数据</p>
+        </div>
+    </div>
+    <div class="right-model" *ngIf="currentItem">
+        <div class="right-model-bg" *ngIf="rightModel === 'show'" (click)="closeRight(0)"></div>
+        <div class="right-model-content" [class.right-fade-in]="rightModel==='show'"
+             [class.right-fade-out]="rightModel==='hide'" [ngStyle]="{width:'70%',height:'90%','min-height':'350px'}">
+            <ai-system-datarole-edit class="w-100 h-100" [datarole]="currentItem" (onCancel)="closeRight(0)"
+                                     (onSubmitSuccess)="onSubmitSuccess($event)"></ai-system-datarole-edit>
+        </div>
+    </div>
+</div>

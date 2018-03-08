@@ -1,0 +1,66 @@
+server:
+  port: 8761
+
+eureka:
+    instance:
+        appname: registry
+        instanceId: Registry:${spring.application.instance_id:${random.value}}
+        prefer-ip-address: true
+        lease-renewal-interval-in-seconds: 5
+        lease-expiration-duration-in-seconds: 10
+        status-page-url-path: ${management.context-path}/info
+        health-check-url-path: ${management.context-path}/health
+        metadata-map:
+            profile: ${spring.profiles.active}
+            version: ${info.project.version}
+    client:
+        enabled: true
+        fetch-registry: true
+        register-with-eureka: false
+        instance-info-replication-interval-seconds: 10
+        registry-fetch-interval-seconds: 10
+        service-url:
+            defaultZone: http://localhost:${server.port}/eureka/
+    dashboard:
+        path: /registry
+
+management:
+    security:
+        enabled: false
+    context-path: /management
+    health:
+        mail:
+            enabled: false
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+ribbon:
+  ConnectTimeout: 500
+  ReadTimeout: 10000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+  eureka:
+    enabled: false
+
+logging:
+  file: logs/registry.log
+
+security:
+  basic:
+    enabled: false
+    
+auth:
+  resource:
+    client:
+      client_id: client
+      secret: secret
+      scope: gateway
+      access_token_expire_seconds: 600
+      refresh_token_expire_seconds: 43200

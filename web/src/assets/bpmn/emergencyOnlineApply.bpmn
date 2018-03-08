@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="emergencyOnlineApply" name="紧急上线申请流程" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="threeMGR" name="三级经理审批">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createEmergencyTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeEmergencyTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="threeMGR">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createEmergencyTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeEmergencyTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="twoMGR" name="二级经理审批">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createEmergencyTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeEmergencyTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow2" name="twoMGR" sourceRef="threeMGR" targetRef="twoMGR">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='twoMGR'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="yzTwoMGR" name="业支二级经理审批">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createEmergencyTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeEmergencyTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow3" name="yzTwoMGR" sourceRef="twoMGR" targetRef="yzTwoMGR">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='yzTwoMGR'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="executeThreeMGR" name="执行部门三级经理审批">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createEmergencyTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeEmergencyTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow4" sourceRef="yzTwoMGR" targetRef="executeThreeMGR"></sequenceFlow>
+    <userTask id="executeApproval" name="执行人核准">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createEmergencyTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeEmergencyTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow5" sourceRef="executeThreeMGR" targetRef="executeApproval"></sequenceFlow>
+    <userTask id="confirm" name="发起人确认">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createEmergencyTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeEmergencyTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow6" sourceRef="executeApproval" targetRef="confirm"></sequenceFlow>
+    <userTask id="emergencyModify" name="修改">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="#{createEmergencyTaskListener}"></activiti:taskListener>
+        <activiti:taskListener event="delete" delegateExpression="#{completeEmergencyTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow7" name="emergencyModify" sourceRef="threeMGR" targetRef="emergencyModify">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='emergencyModify'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="emergencyModify" targetRef="threeMGR"></sequenceFlow>
+    <sequenceFlow id="flow9" name="threeMGR" sourceRef="twoMGR" targetRef="threeMGR">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verify=='threeMGR'}]]></conditionExpression>
+    </sequenceFlow>
+    <endEvent id="emergencyEnd" name="结束">
+      <extensionElements>
+        <activiti:executionListener event="end" delegateExpression="#{endEmergencyTaskListener}"></activiti:executionListener>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="flow10" sourceRef="confirm" targetRef="emergencyEnd"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_emergencyOnlineApply">
+    <bpmndi:BPMNPlane bpmnElement="emergencyOnlineApply" id="BPMNPlane_emergencyOnlineApply">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="50.0" y="69.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="threeMGR" id="BPMNShape_threeMGR">
+        <omgdc:Bounds height="55.0" width="105.0" x="130.0" y="59.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="twoMGR" id="BPMNShape_twoMGR">
+        <omgdc:Bounds height="55.0" width="105.0" x="280.0" y="59.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="yzTwoMGR" id="BPMNShape_yzTwoMGR">
+        <omgdc:Bounds height="55.0" width="105.0" x="430.0" y="59.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="executeThreeMGR" id="BPMNShape_executeThreeMGR">
+        <omgdc:Bounds height="55.0" width="105.0" x="580.0" y="59.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="executeApproval" id="BPMNShape_executeApproval">
+        <omgdc:Bounds height="55.0" width="105.0" x="730.0" y="59.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="confirm" id="BPMNShape_confirm">
+        <omgdc:Bounds height="55.0" width="105.0" x="730.0" y="169.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="emergencyModify" id="BPMNShape_emergencyModify">
+        <omgdc:Bounds height="55.0" width="105.0" x="130.0" y="179.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="emergencyEnd" id="BPMNShape_emergencyEnd">
+        <omgdc:Bounds height="35.0" width="35.0" x="765.0" y="269.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="85.0" y="86.0"></omgdi:waypoint>
+        <omgdi:waypoint x="130.0" y="86.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="235.0" y="86.0"></omgdi:waypoint>
+        <omgdi:waypoint x="280.0" y="86.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="42.0" x="233.0" y="69.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="385.0" y="86.0"></omgdi:waypoint>
+        <omgdi:waypoint x="430.0" y="86.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="57.0" x="383.0" y="43.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="535.0" y="86.0"></omgdi:waypoint>
+        <omgdi:waypoint x="580.0" y="86.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="685.0" y="86.0"></omgdi:waypoint>
+        <omgdi:waypoint x="730.0" y="86.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="782.0" y="114.0"></omgdi:waypoint>
+        <omgdi:waypoint x="782.0" y="169.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="182.0" y="114.0"></omgdi:waypoint>
+        <omgdi:waypoint x="182.0" y="179.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="86.0" x="153.0" y="139.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="182.0" y="179.0"></omgdi:waypoint>
+        <omgdi:waypoint x="96.0" y="120.0"></omgdi:waypoint>
+        <omgdi:waypoint x="182.0" y="114.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="332.0" y="59.0"></omgdi:waypoint>
+        <omgdi:waypoint x="255.0" y="8.0"></omgdi:waypoint>
+        <omgdi:waypoint x="182.0" y="59.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="48.0" x="288.0" y="31.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="782.0" y="224.0"></omgdi:waypoint>
+        <omgdi:waypoint x="782.0" y="269.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

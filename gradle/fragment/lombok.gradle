@@ -1,0 +1,7 @@
+apply plugin: "net.ltgt.apt"
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    apt "org.projectlombok:lombok:${lombokVersion}"
+}
+

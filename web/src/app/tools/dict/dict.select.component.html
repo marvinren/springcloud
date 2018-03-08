@@ -1,0 +1,6 @@
+<select [required]="required" class="form-control form-control-sm" name="{{name}}" *ngIf="list && list.length" [(ngModel)]="selectItem" (change)="_onChange()">
+    <option *ngFor="let item of list" value='{{item.param_no}}'>{{item.param_name}}</option>
+</select>
+<div *ngIf="!list|| !list.length">
+    <ai-loading-select></ai-loading-select>
+</div>

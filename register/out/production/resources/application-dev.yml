@@ -1,0 +1,29 @@
+eureka:
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
+
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+zuul:
+  routes:
+    service-template:
+      service-id: service-template
+      path: /template/**
+    auth-server:
+      strip-prefix: false
+      service-id: auth-server
+      path: /uaa/**
+
+ribbon:
+  eureka:
+    enabled: false
+
+service-template:
+  ribbon:
+    listOfServers: localhost:9000
+auth-server:
+  ribbon:
+    listOfServers: localhost:9999

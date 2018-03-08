@@ -1,0 +1,68 @@
+<div class="right-editor-wrap">
+    <div class="card border-0 editor-head">
+        <div class="card-header p-0 border-0 bg-transparent">
+            <a class="btn iconfont icon-back rolate180 flipx pt-1 pb-1 pl-2 pr-2" (click)="_onCancel()"></a>
+        </div>
+        <div class="card-header text-headline border-0 bg-transparent py-0 relative">
+            <h6 class="border-theme border-bottom px-0 py-2 m-0 text-headline">数据权限信息</h6>
+            <div class="absolute-top-right pr-3">
+                <button class="btn btn-sm btn-primary border-radius hand" (click)="add(form)" [class.btn-danger]="!form.valid"
+                        [disabled]="!form.valid" *ngIf="!datarole.data_role_id && !datarole.readonly">新&#12288;增
+                </button>
+                <button class="btn btn-sm btn-primary border-radius hand" (click)="edit(form)" [class.btn-danger]="!form.valid"
+                        [disabled]="!form.valid" *ngIf="datarole.data_role_id && !datarole.readonly">修&#12288;改
+                </button>
+                <button class="btn btn-sm border-radius hand" (click)="_onCancel()" *ngIf="!datarole.readonly">返&#12288;回</button>
+            </div>
+        </div>
+    </div>
+    <div class="editor-content" aiScrollBar [alwaysShow]="true">
+        <form name="form" #form="ngForm" class="card-block text-base form-sm">
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2">权限名称</label>
+                <div class="col-4">
+                    <input class="form-control form-control-sm" type="text" name="name" maxlength="50"
+                           required [(ngModel)]="datarole.name" placeholder="权限名称" *ngIf="!datarole.readonly">
+                    <span class="col-form-label-sm" *ngIf="datarole.readonly">{{datarole.name}}</span>
+                </div>
+                <label class="col-form-label col-form-label-sm col-2">编号</label>
+                <div class="col-4">
+                    <input class="form-control form-control-sm" type="text" name="code" maxlength="50"
+                           readonly [(ngModel)]="datarole.code" placeholder="系统自动生成" *ngIf="!datarole.readonly">
+                    <span class="col-form-label-sm" *ngIf="datarole.readonly">{{datarole.code}}</span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2">组织机构id</label>
+                <div class="col-10" ngbDropdown #dropDrop="ngbDropdown" [autoClose]="false">
+                    <div class="input-group input-group-sm" *ngIf="!datarole.readonly">
+                        <input class="form-control form-control-sm" type="text" required readonly
+                               [(ngModel)]="datarole.organize_id" placeholder="组织机构id" name="link_id" (click)="openDrop()">
+                        <div class="input-group-addon py-0 hand" (click)="openDrop();">
+                            <i class="iconfont icon-search"></i>
+                        </div>
+                    </div>
+                    <span class="col-form-label-sm" *ngIf="datarole.readonly">{{datarole.organize_id}}</span>
+                    <div class="dropdown-menu dropdown-menu-right p-0" style="height: 300px;">
+                        <ai-selector-org [needButton]="true" (onCancel)="closeDrop()"
+                                         (onSubmit)="onSelectedOrg($event)"></ai-selector-org>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2">备注</label>
+                <div class="col-10">
+                        <textarea class="form-control form-control-sm" rows="5" name="notes" maxlength="200"
+                                  [(ngModel)]="datarole.notes" placeholder="备注" *ngIf="!datarole.readonly"></textarea>
+                    <span class="col-form-label-sm" *ngIf="datarole.readonly">{{datarole.notes}}</span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="text-right p-1">
+        <a class="btn btn-primary btn-round iconfont icon-edit" *ngIf="datarole.readonly"
+           (click)="datarole.readonly = false;"
+           title="编辑"></a>
+    </div>
+</div>

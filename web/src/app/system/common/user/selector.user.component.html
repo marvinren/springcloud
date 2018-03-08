@@ -1,0 +1,10 @@
+<div class="search-list-wrap card border-0 p-0 m-0 w-100 h-100">
+    <div class="row h-100 p-0 m-0">
+        <div class="card border-0 col-5 p-0 h-100">
+            <ai-selector-org [checkbox]="false" (onSubmit)="onSelectOrg($event)" class="h-100"></ai-selector-org>
+        </div>
+        <div class="card border-0 col-7 p-0 pl-2 h-100">
+            <ai-selector-user-list [currentOrg]="currentOrg" [needButton]="needButton" (onCancel)="_onCancel($event)" (onSubmit)="_onSubmit($event)" class="h-100"></ai-selector-user-list>
+        </div>
+    </div>
+</div>

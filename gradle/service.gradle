@@ -1,0 +1,42 @@
+apply plugin: "maven-publish"
+
+jar {
+    version = "$version"
+}
+
+task copyJarServer(type: Copy) {
+    from('build/libs') {
+        include '*.jar'
+    }
+    into project.file("$rootDir/build/dependency_lib")
+}
+
+build {
+    dependsOn copyJarServer
+}
+
+dependencies {
+
+    compile 'org.springframework.cloud:spring-cloud-starter-config'
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+    compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+
+    testCompile "junit:junit:${junitVersion}"
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+
+    compile("io.springfox:springfox-swagger2:${springfoxVersion}") {
+        exclude module: 'mapstruct'
+    }
+    compile "io.springfox:springfox-bean-validators:${springfoxVersion}"
+    compile "io.springfox:springfox-swagger-ui:${springfoxVersion}"
+}
+
+if (project.hasProperty("prod")) {
+    apply from: "$rootDir/gradle/profile/profile_prod.gradle"
+} else {
+    apply from: "$rootDir/gradle/profile/profile_dev.gradle"
+}
+apply from: "$rootDir/gradle/fragment/lombok.gradle"
+apply from: "$rootDir/gradle/fragment/mysql.gradle"
+apply from: "$rootDir/gradle/fragment/mapstruct.gradle"

@@ -1,0 +1,13 @@
+server:
+    port: 8761
+    compression:
+        enabled: true
+        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+        min-response-size: 1024
+
+eureka:
+  instance:
+    hostname: localhost
+  server:
+    enable-self-preservation: true
+    eviction-interval-timer-in-ms: 90000

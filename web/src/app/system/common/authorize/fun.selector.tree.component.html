@@ -1,0 +1,27 @@
+<ul class="list-group">
+    <section class="sys-tree-list-group" *ngFor="let item of funTree">
+        <li class="list-group-item border-dotted" *ngIf="item.show">
+            <div class="white-space" *ngIf="item.last_show"></div>
+            <i class="iconfont icon-more arraw"></i>
+            <div class="list-group-item-heading">
+                <label class="custom-control custom-checkbox" *ngIf="checkbox">
+                    <input type="checkbox" class="custom-control-input" [(ngModel)]="item.checked" (change)="_onCheck(item)"
+                    >
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description text-base"></span>
+                </label>
+                <i class="iconfont i-folder" [ngClass]="{'icon-folder-open':item.opened,'icon-folder-off':!item.opened}"
+                   *ngIf="item.children && item.children.length" (click)="item.opened = !item.opened"></i>
+                <i class="iconfont icon-singlefile i-item" *ngIf="!item.children || !item.children.length"></i>
+                <span class="list-group-item-heading-text" [ngClass]="{'bg-warning':item.has_keyword,'bg-theme text-white':!checkbox && selectedItem && selectedItem===item}"  (click)="_onSelect(item)">
+                {{'['+item.func_code+']'+item.name}}
+            </span>
+
+            </div>
+            <div [ngClass]="{'show':item.opened,'hide':!item.opened}">
+                <ai-system-fun-selector-tree [funTree]="item.children" [selectedItem]="selectedItem"  [checkbox]="checkbox" (onSelect)="_onSelect($event)"
+                                             (onCheck)="_onChildCheck($event,item)" *ngIf="item.children && item.children.length"></ai-system-fun-selector-tree>
+            </div>
+        </li>
+    </section>
+</ul>

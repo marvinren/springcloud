@@ -1,0 +1,20 @@
+<ul class="list-group sys-tree-list-group">
+    <li class="list-group-item border-dotted" *ngFor="let item of dictionaryTree"
+        [ngClass]="{'hide':!item.show,'show':item.show}">
+        <div class="white-space" *ngIf="item.last_show"></div>
+        <i class="iconfont icon-more arraw"></i>
+        <div class="list-group-item-heading" ngbDropdown>
+            <i class="iconfont i-folder" [ngClass]="{'icon-folder-open':item.opened,'icon-folder-off':!item.opened}"
+               *ngIf="item.children && item.children.length" (click)="item.opened = !item.opened"></i>
+            <i class="iconfont icon-singlefile i-item" *ngIf="!item.children || !item.children.length"></i>
+            <span class="list-group-item-heading-text" [ngClass]="{'bg-warning':item.has_keyword}" (click)="_onSelect(item)">
+                {{'['+item.param_type+']'+ (item.param_name?item.param_name:'')}}
+            </span>
+        </div>
+        <div [ngClass]="{'show':item.opened,'hide':!item.opened}">
+            <ai-system-dictionary-tree [dictionaryTree]="item.children" [readonly]="readonly" (onSelectMenu)="_onSelectMenu($event)"
+                                (onSelect)="_onSelect($event)"
+                                *ngIf="item.children && item.children.length"></ai-system-dictionary-tree>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,153 @@
+<div class="demand-analysis-wrap p-3">
+    <ai-demand-step [step]="1"></ai-demand-step>
+    <div class="card mt-3 px-3">
+        <div class="card-header border-0 light-title bg-transparent py-2 px-0">
+            <span>需求审批信息</span>
+        </div>
+        <div class="card-block p-1 pt-4 form-sm text-base">
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2 w-12">需求编码:</label>
+                <div class="col-2 w-21">
+                    <input class="form-control form-control-sm" type="text"
+                           placeholder="自动生成">
+                </div>
+                <label class="col-form-label col-form-label-sm col-2 w-12">需求名称:</label>
+                <div class="col-6 w-54">
+                    <input class="form-control form-control-sm" type="text"
+                           placeholder="需求名称">
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2 w-12">版本类型特点:</label>
+                <div class="col-10 w-88">
+                    <textarea class="form-control form-control-sm" rows="10"
+                              placeholder="版本类型特点"></textarea>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2 w-12">开发开始时间:</label>
+                <div class="col-2 w-21">
+                    <input class="form-control form-control-sm" type="text"
+                           placeholder="开发开始时间">
+                </div>
+                <label class="col-form-label col-form-label-sm col-2 w-12">开发结束时间:</label>
+                <div class="col-2 w-21">
+                    <input class="form-control form-control-sm" type="text"
+                           placeholder="开发结束时间">
+                </div>
+                <label class="col-form-label col-form-label-sm col-2 w-12">测试开始时间:</label>
+                <div class="col-2 w-21">
+                    <input class="form-control form-control-sm" type="text"
+                           placeholder="测试开始时间">
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2 w-12">测试结束时间:</label>
+                <div class="col-2 w-21">
+                    <input class="form-control form-control-sm" type="text"
+                           placeholder="测试结束时间">
+                </div>
+                <label class="col-form-label col-form-label-sm col-2 w-12">计划完成时间:</label>
+                <div class="col-2 w-21">
+                    <input class="form-control form-control-sm" type="text"
+                           placeholder="计划完成时间">
+                </div>
+                <label class="col-form-label col-form-label-sm col-2 w-12">预估工作量:</label>
+                <div class="col-2 w-21">
+                    <input class="form-control form-control-sm" type="text"
+                           placeholder="预估工作量">
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2 w-12">需求类型:</label>
+                <div class="col-2 w-21">
+                    <input class="form-control form-control-sm" type="text"
+                           placeholder="需求类型">
+                </div>
+                <label class="col-form-label col-form-label-sm col-2 w-12">紧急程度:</label>
+                <div class="col-2 w-21">
+                    <input class="form-control form-control-sm" type="text"
+                           placeholder="紧急程度">
+                </div>
+                <label class="col-form-label col-form-label-sm col-2 w-12">子系统:</label>
+                <div class="col-2 w-21">
+                    <input class="form-control form-control-sm" type="text"
+                           placeholder="子系统">
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2 w-12">版本类型特点:</label>
+                <div class="col-10 w-88">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">在线计费</span>
+                    </label>
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">离线计费</span>
+                    </label>
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">高额</span>
+                    </label>
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">采集</span>
+                    </label>
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">清单</span>
+                    </label>
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">账务处理</span>
+                    </label>
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">账务管理</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-block p-1 pt-4">
+            <ul class="nav main-nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" (click)="nav = 6" [ngClass]="{'active': nav === 1}">历史轨迹</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="nav = 3" [ngClass]="{'active': nav === 2}">附件列表</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="nav = 4" [ngClass]="{'active': nav === 3}">需求基本信息</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="nav = 5" [ngClass]="{'active': nav === 4}">需求模板</a>
+                </li>
+            </ul>
+            <div class="tab-content main-tab-content">
+                <div class="tab-pane" [ngClass]="{'active': nav === 1}">
+                    <ai-demand-view-log></ai-demand-view-log>
+                </div>
+                <div class="tab-pane" [ngClass]="{'active': nav === 2}">
+                    <ai-demand-view-attach></ai-demand-view-attach>
+                </div>
+                <div class="tab-pane" [ngClass]="{'active': nav === 3}">
+                    <ai-demand-view-base></ai-demand-view-base>
+                </div>
+                <div class="tab-pane" [ngClass]="{'active': nav === 4}">
+                    <ai-demand-view-template></ai-demand-view-template>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

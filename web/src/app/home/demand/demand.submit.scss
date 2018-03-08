@@ -1,0 +1,33 @@
+.modal-header {
+  a:hover {
+    color: $theme;
+  }
+}
+
+.demand-submit {
+  .form-group {
+    border: 1px solid #eee;
+    .this-form-label, .next-form-label {
+      border-radius: 5px;
+      text-align: center;
+      color: #fff;
+      padding: 0;
+      line-height: 1.75rem;
+      font-size: $font-size-sm;
+    }
+    .form-group-inp {
+      padding-top: 2px;
+      padding-bottom: 2px;
+    }
+    .this-form-label {
+      background: #0085d0;
+    }
+    .next-form-label {
+      background: #e40077;
+    }
+
+    .custom-control {
+      margin-bottom: 0 !important;
+    }
+  }
+}

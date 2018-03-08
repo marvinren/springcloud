@@ -1,0 +1,90 @@
+<div  class="right-editor-wrap">
+    <div class="card border-0 editor-head">
+        <div class="card-header p-0 border-0 bg-transparent">
+            <a class="btn btn-back iconfont icon-back rolate180 flipx py-1 px-2 hand" (click)="_onCancel()"></a>
+        </div>
+        <div class="card-header text-headline border-0 bg-transparent py-0 relative">
+            <h6 class="border-theme border-bottom px-0 py-2 m-0 text-headline">流程角色信息</h6>
+            <div class="absolute-top-right pr-3">
+                <button class="btn btn-sm btn-primary border-radius hand" (click)="add(form)"
+                        *ngIf="!wfrole.wf_role_id && !wfrole.readonly" [class.btn-danger]="!form.valid"
+                        [disabled]="!form.valid">
+                    新&#12288;增
+                </button>
+                <button class="btn btn-sm btn-primary border-radius hand" (click)="edit(form)"
+                        *ngIf="wfrole.wf_role_id && !wfrole.readonly" [class.btn-danger]="!form.valid"
+                        [disabled]="!form.valid">
+                    修&#12288;改
+                </button>
+                <button class="btn btn-sm border-radius hand" (click)="_onCancel()" *ngIf="!wfrole.readonly">返&#12288;回</button>
+            </div>
+        </div>
+    </div>
+    <div  class="editor-content" aiScrollBar [alwaysShow]="true">
+        <div  class="card border-0">
+            <div class="card-block text-base form-sm">
+                <form name="form" #form="ngForm">
+                    <div class="form-group form-group-sm row">
+                        <label class="col-form-label col-form-label-sm col-2">角色名称</label>
+                        <div class="col-10">
+                            <input class="form-control form-control-sm" type="text" name="name" maxlength="50"
+                                   required [(ngModel)]="wfrole.name" placeholder="角色名称" *ngIf="!wfrole.readonly">
+                            <span class="col-form-label-sm" *ngIf="wfrole.readonly">{{wfrole.name}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm row">
+                        <label class="col-form-label col-form-label-sm col-2">流程标识</label>
+                        <div class="col-4">
+                            <input class="form-control form-control-sm" type="text" name="process_key" maxlength="50"
+                                   readonly [(ngModel)]="wfrole.process_key" placeholder="流程标识" *ngIf="!wfrole.readonly">
+                            <span class="col-form-label-sm" *ngIf="wfrole.readonly">{{wfrole.process_key}}</span>
+                        </div>
+                        <label class="col-form-label col-form-label-sm col-2">角色编号</label>
+                        <div class="col-4">
+                            <input class="form-control form-control-sm" type="text" name="code" maxlength="50"
+                                   readonly [(ngModel)]="wfrole.code" placeholder="角色编号" *ngIf="!wfrole.readonly">
+                            <span class="col-form-label-sm" *ngIf="wfrole.readonly">{{wfrole.code}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm row">
+                        <label class="col-form-label col-form-label-sm col-2">处理环节</label>
+                        <div class="col-10" ngbDropdown #dropDrop="ngbDropdown" [autoClose]="false">
+                            <div class="input-group input-group-sm" *ngIf="!wfrole.readonly">
+                                <input class="form-control form-control-sm" type="text" required readonly
+                                       placeholder="" name="link_id" (click)="openDrop()" value="{{wfrole.link_id}}">
+                                <div class="input-group-addon py-0 hand" (click)="openDrop();">
+                                    <i class="iconfont icon-search"></i>
+                                </div>
+                            </div>
+                            <span class="col-form-label-sm" *ngIf="wfrole.readonly">{{wfrole.link_id}}</span>
+                            <div class="dropdown-menu dropdown-menu-right p-0 w-75" style="max-height: 240px;">
+                                <div class="relative w-100" style="height: 240px;">
+                                    <ai-system-wfrole-link (onCancel)="closeDrop()" (onSubmit)="onSelectedLink($event)"></ai-system-wfrole-link >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm row">
+                        <label class="col-form-label col-form-label-sm col-2">状态</label>
+                        <div class="col-3">
+                            <select class="form-control form-control-sm" name="state" required [(ngModel)]="wfrole.state">
+                                <option value=1>正常</option>
+                                <option value=0>注销</option>
+                            </select>
+                            <span class="col-form-label-sm" *ngIf="wfrole.readonly">{{item.state|statePipe}}</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-sm row">
+                        <label class="col-form-label col-form-label-sm col-2">备注</label>
+                        <div class="col-10">
+                        <textarea class="form-control form-control-sm" rows="10" name="notes" maxlength="200"
+                                  [(ngModel)]="wfrole.notes" placeholder="备注" *ngIf="!wfrole.readonly" required></textarea>
+                            <span class="col-form-label-sm" *ngIf="wfrole.readonly">{{wfrole.notes}}</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

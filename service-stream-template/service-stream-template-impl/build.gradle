@@ -1,0 +1,11 @@
+apply from: "$rootDir/gradle/service.gradle"
+
+dependencies{
+    compile("org.springframework.cloud:spring-cloud-starter-stream-kafka")
+}
+
+
+bootRepackage {
+    mainClass = 'com.ai.qmc.service.streamtemplate.StreamTemplateServiceApplication'
+}
+

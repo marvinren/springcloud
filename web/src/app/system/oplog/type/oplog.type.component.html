@@ -1,0 +1,5 @@
+<select class="form-control form-control-sm" name="type" required
+        [(ngModel)]="oplog.op_type_id">
+    <option></option>
+    <option *ngFor="let item of list" value={{item.op_type_id}}>{{item.op_type_name}}</option>
+</select>

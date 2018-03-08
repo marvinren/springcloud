@@ -1,0 +1,91 @@
+<div class="search-list-wrap demand-wrap" xmlns:text-align="http://www.w3.org/1999/xhtml">
+    <div class="card">
+        <div class="card-header text-headline border-0 bg-transparent pt-3 relative">
+            <h6 class="border-theme border-left-1 p-1 pl-2 pb-0 mb-0 text-headline">操作日志</h6>
+            <div class="card-header-right center">
+                <div class="header-search-input">
+                    <input type="text"[(ngModel)]="pagination.op_content" placeholder="请输入操作数据进行查询" (keyup.enter)="search()">
+                    <a (click)="search()">查询</a>
+                </div>
+                <div class="btn header-search-btn ml-1"><a (click)="paginationFlag = !paginationFlag">高级查询</a></div>
+            </div>
+        </div>
+        <div class="card-block pt-0 pb-0 mb-0 text-base" *ngIf="paginationFlag"  >
+            <div class="high-search pt-3"  >
+                <form class="high-search pt-3">
+                    <div class="form-group form-group-sm row"  style="display:flex;justify-content:center;"  >
+                        <label for="op_type_id" class="col-2 col-form-label col-form-label-sm">操作类型:</label>
+                        <div class="col-3" id="op_type_id" >
+                            <ai-system-oplog-type [oplog]="currentItem"></ai-system-oplog-type>
+                        </div>
+                        <label for="keyword" class="col-2 col-form-label col-form-label-sm" >操作人员:</label>
+                        <div class="col-3" id="keyword" >
+                            <input class="form-control form-control-sm" name="keyword" type="text" [(ngModel)]="pagination.keyword"
+                                   placeholder="请输入姓名或者工号">
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm row" style="display:flex;justify-content:center;" >
+                        <div for="op_time" class="col-2 col-form-label col-form-label-sm">操作时间:</div>
+                        <div class="col-8" id="op_time" >
+                            <div class="row pl-3">
+                                <div class="input-group input-group-sm col-5 pl-0" >
+                                    <input class="form-control form-control-sm" type="text"
+                                           ngbDatepicker #dp1="ngbDatepicker" (click)="dp1.toggle();dp2.close();"
+                                           placeholder="" [(ngModel)]="pagination.start_time">
+                                    <div class="input-group-addon py-0 hand" (click)="dp1.toggle();dp2.close();">
+                                        <i class="iconfont icon-calendar"></i>
+                                    </div>
+                                </div>
+                                <span class="pl-1 pr-1">&#12288;到&#12288;</span>
+                                <div class="input-group input-group-sm col-5 pl-0 " >
+                                    <input class="form-control form-control-sm" type="text"
+                                           ngbDatepicker #dp2="ngbDatepicker" (click)="dp2.toggle();dp1.close();"
+                                           placeholder="" [(ngModel)]="pagination.end_time">
+                                    <div class="input-group-addon py-0 hand" (click)="dp2.toggle();dp1.close();">
+                                        <i class="iconfont icon-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm row">
+                        <div class="col-10 text-right">
+                            <button class="btn btn-primary px-3 py-1 border-radius btn-sm hand" (click)="search() ">查&#12288;询</button>
+                            <button class="btn px-3 py-1 border-radius btn-sm ml-2  hand" type="reset">重&#12288;置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card-block mt-0 pt-0">
+            <table class="table custom-table table-striped table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th width="60px">序号</th>
+                    <th>操作日志编号</th>
+                    <th>操作类型编号</th>
+                    <th>操作数据</th>
+                    <th>操作人员编号</th>
+                    <th>操作日期</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="text-center" *ngFor="let item of oplogList;let i = index;">
+                    <td class="text-primary">{{i+1}}</td>
+                    <td>{{item. op_log_id}}</td>
+                    <td>{{item.op_type_id}}</td>
+                    <td>{{item.op_content}}</td>
+                    <td> {{item.op_id}}</td>
+                    <td>{{item.op_date}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <ai-pagination [pageSize]="pagination.page_size" [collectionSize]="pagination.row_count"
+                           [pageNo]="pagination.page_no" *ngIf="pagination.row_count"
+                           (onPageChange)="onPageChange($event)"></ai-pagination>
+            <div class="text-base text-info text-center" *ngIf="!pagination.row_count">
+                <p>没有匹配的数据</p>
+            </div>
+        </div>
+    </div>
+</div>

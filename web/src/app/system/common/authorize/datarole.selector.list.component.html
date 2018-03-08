@@ -1,0 +1,56 @@
+<div class="search-list-wrap card border-0 vcenter-wrap">
+    <div class="vcenter-wrap-head card-header card-header-dark border-0 py-1 px-2 relative" ngbDropdown>
+        <h6 class="p-1 pl-2 pb-0 mb-0 text-base text-white">数据权限列表</h6>
+        <div class="card-header-right center">
+            <div class="header-search-input">
+                <input type="text" [(ngModel)]="pagination.keyword" placeholder="名称、编码" (keyup.enter)="search()">
+                <a class="iconfont icon-search" (click)="search()"></a>
+            </div>
+        </div>
+    </div>
+    <div class="vcenter-wrap-content card-block mt-0 p-0 text-base" aiScrollBar [alwaysShow]="true" [autoTop]="false"
+         [config]="{suppressScrollX:true}">
+        <table class="table custom-table table-striped table-condensed table-hover">
+            <thead>
+            <tr>
+                <th width="80px" *ngIf="checkbox">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" [(ngModel)]="checkedAll"
+                               (change)="toggleAll()">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description text-base"></span>
+                    </label>
+                </th>
+                <th>名称</th>
+                <th>描述</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center" *ngFor="let item of list;let i = index;" (click)="_onSelectItem(item)"
+                [class.selected]="currentItem && item.data_role_id === currentItem.data_role_id">
+                <td *ngIf="checkbox">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" [(ngModel)]="item.checked"
+                               (click)="_onCheck(item)">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description text-base"></span>
+                    </label>
+                </td>
+                <td class="text-left hand">{{item.name}}{{item.code?'['+item.code+']':''}}</td>
+                <td class="text-left hand">{{item.notes}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <ngb-pagination *ngIf="pagination.row_count" [collectionSize]="pagination.row_count" [page]="pagination.page_no"
+                        [pageSize]="pagination.page_size"
+                        (pageChange)="onPageChange($event)" [maxSize]="3" [rotate]="true" [boundaryLinks]="true"
+                        size="sm"></ngb-pagination>
+        <div class="text-base text-info text-center" *ngIf="!pagination.row_count">
+            <p>没有匹配的数据</p>
+        </div>
+    </div>
+    <div class="vcenter-wrap-head text-right" *ngIf="needButton">
+        <button class="btn btn-sm btn-primary" (click)="_onSubmit()">确定</button>
+        <button class="btn btn-sm btn-secondary" (click)="_onCancel()">取消</button>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="fun-wrap search-list-wrap">
+    <div class="card border-0 fun-wrap-header">
+        <div class="card-header text-headline border-0 bg-transparent pt-3 relative">
+            <h6 class="border-theme border-left-1 p-1 pl-2 pb-0 mb-0 text-headline">菜单功能</h6>
+            <div class="card-header-right center">
+                <div class="header-search-input">
+                    <input type="text" [(ngModel)]="keyword" placeholder="功能名称/编码"  (keyup)="searchFun()">
+                    <a (click)="searchFun()">查询</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card border-left-0 border-right-0 fun-wrap-content">
+        <div class="card-block sys-tree" aiScrollBar>
+            <div class="sys-tree-root">
+                <div class="sys-tree-root-heading">
+                    <i class="iconfont i-folder hand" [ngClass]="{'icon-folder-open':opened,'icon-folder-off':!opened}"
+                       *ngIf="funTree && funTree.length" (click)="opened = !opened"></i>
+                    <i class="iconfont icon-folder-off text-gray" *ngIf="!funTree || !funTree.length"></i>
+                    <span class="sys-tree-root-heading-text">菜单功能</span>
+                    <a class="iconfont icon-plus float-right"
+                       (click)="onSelectMenu({operate_type:'C',item:null})"></a>
+                </div>
+            </div>
+            <div class="px-2 pb-5" [ngClass]="{'show':opened,'hide':!opened}">
+                <ai-system-fun-tree [funTree]="funTree" (onSelect)="onSelect($event)" (onSelectMenu)="onSelectMenu($event)"></ai-system-fun-tree>
+            </div>
+        </div>
+    </div>
+    <div class="right-model" *ngIf="currentItem">
+        <div class="right-model-bg" *ngIf="rightModel === 'show'" (click)="closeRight(0)"></div>
+        <div class="right-model-content" [class.right-fade-in]="rightModel==='show'"
+             [class.right-fade-out]="rightModel==='hide'" [ngStyle]="{width:'72%',height:'80%'}">
+            <ai-system-fun-edit class="w-100 h-100" [fun]="currentItem" (onCancel)="closeRight($event)"
+                                (onSubmitSuccess)="onSubmitSuccess($event)"></ai-system-fun-edit>
+        </div>
+    </div>
+</div>

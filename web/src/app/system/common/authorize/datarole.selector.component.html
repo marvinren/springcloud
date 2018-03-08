@@ -1,0 +1,14 @@
+<div class="card border-0 p-0 m-0 w-100 h-100">
+    <div class="row h-100 p-0 m-0">
+        <div class="card border-0 col-5 p-0 h-100">
+            <ai-authroize-org [checkbox]="false" (onSubmit)="onSelectOrg($event)" class="h-100"></ai-authroize-org>
+        </div>
+        <div class="card border-0 col-7 p-0 pl-2 h-100">
+            <ai-system-datarole-selector-list [currentOrg]="currentOrg" [needButton]="needButton" (onCancel)="_onCancel($event)" (onSubmit)="_onSubmit($event)" class="h-100"></ai-system-datarole-selector-list>
+        </div>
+    </div>
+    <!--div class="text-right" *ngIf="needButton">
+        <button class="btn btn-sm btn-primary" (click)="_onsubmit()">确定</button>
+        <button class="btn btn-sm" (click)="_onCancel()">取消</button>
+    </div-->
+</div>

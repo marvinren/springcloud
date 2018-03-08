@@ -1,0 +1,9 @@
+rootProject.name = 'springcloud'
+include 'register'
+include 'service-template:service-template-impl'
+//findProject(':service-template:service-template-impl')?.name = 'service-template-impl'
+include 'service-template:service-template-api'
+//findProject(':service-template:service-template-api')?.name = 'service-template-api'
+include 'service-stream-template:service-stream-template-impl'
+//findProject(':service-stream-template:service-stream-template-impl')?.name = 'service-stream-template'
+

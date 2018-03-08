@@ -1,0 +1,59 @@
+server:
+  port: 9000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+  client:
+
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+                timeoutInMilliseconds: 250
+
+management:
+  security:
+    enabled: false
+
+logging:
+  level:
+    com.ai.qmc: DEBUG
+  file: logs/service-template.log
+
+spring:
+  jpa:
+    show-sql: true
+  datasource:
+    url: jdbc:h2:mem:test
+    driver-class-name: org.h2.Driver
+    username: root
+    password: 123456
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: false
+
+ribbon:
+  ConnectTimeout: 500
+  ReadTimeout: 10000
+  OkToRetryOnAllOperations: false
+  MaxAutoRetriesNextServer: 0
+  MaxAutoRetries: 0

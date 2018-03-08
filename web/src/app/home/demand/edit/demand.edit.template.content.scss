@@ -1,0 +1,15 @@
+.box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.list-group {
+  border: none;
+  .list-group-item {
+    border: none;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+  }
+}

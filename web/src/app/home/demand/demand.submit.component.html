@@ -1,0 +1,62 @@
+<div class="modal-header  border-0 p-0">
+    <a class="btn iconfont icon-back rolate180 flipx bg-tab pt-1 pb-1 pl-2 pr-2" (click)="_onClose()"></a>
+</div>
+<div class="modal-body modal-body-nopadding demand-submit pt-0">
+    <div class="card border-0">
+        <div class="card-header light-title pl-0 pr-0 bg-transparent">审批</div>
+    </div>
+    <div class="card border-0">
+        <div class="card-block">
+            <div class="form-group form-group-sm row bg-tab">
+                <label class="col-2 col-form-label this-form-label">审批意见</label>
+                <div class="col-8 form-group-inp">
+                    <label class="custom-control custom-radio">
+                        <input name="result" type="radio" class="custom-control-input" value="1">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">同意</span>
+                    </label>
+                    <label class="custom-control custom-radio">
+                        <input name="result" type="radio" class="custom-control-input" value="0">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">不同意</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row bg-tab">
+                <label class="col-2 col-form-label this-form-label">意见模板</label>
+                <div class="col-8 form-group-inp">
+                    <select class="form-control form-control-sm">
+                        <option value="同意，请领导审批">同意，请领导审批</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <textarea rows="3" class="form-control form-control-sm"></textarea>
+            </div>
+            <div class="form-group form-group-sm row bg-pink">
+                <label class="col-2 col-form-label next-form-label">下一环节</label>
+                <div class="col-8 form-group-inp">
+                    <select class="form-control form-control-sm">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row bg-pink">
+                <label class="col-2 col-form-label next-form-label">主办人员</label>
+                <div class="col-8 form-group-inp">
+                    <select class="form-control form-control-sm">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row bg-pink">
+                <label class="col-2 col-form-label next-form-label">选择人员</label>
+                <div class="col-8 form-group-inp">
+                    <select class="form-control form-control-sm">
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-right p-1">
+        <button class="btn btn-success border-radius hand" (click)="_onSubmit()">完成提交</button>
+    </div>
+</div>

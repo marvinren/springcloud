@@ -1,0 +1,56 @@
+<div class="modal-header border-0 p-0">
+    <a class="btn iconfont icon-back rolate180 flipx pt-1 pb-1 pl-2 pr-2" (click)="_onCancel()"></a>
+</div>
+<div class="modal-body modal-body-nopadding search-list-wrap pt-0">
+    <div class="card border-0">
+        <div class="card-header text-headline border-0 bg-transparent pt-3 relative">
+            <h6 class="border-theme border-left-1 p-1 pl-2 pb-0 mb-0 text-headline">操作类型</h6>
+        </div>
+        <div class="card-block text-base form-sm">
+            <form name="form" #form="ngForm" action="javascript:;">
+                <div class="form-group form-group-sm row">
+                    <label class="col-form-label col-form-label-sm col-2">类型名称</label>
+                    <div class="col-3">
+                        <input class="form-control form-control-sm" type="text" name="name" maxlength="10"
+                               required [(ngModel)]="optype.op_type_name" placeholder="类型名称">
+                    </div>
+                    <label class="col-form-label col-form-label-sm col-2">编码</label>
+                    <div class="col-3">
+                        <input class="form-control form-control-sm" type="text" name="code" maxlength="10"
+                                placeholder="系统自动生成" *ngIf="!optype.readonly" readonly>
+                        <span class="col-form-label-sm" *ngIf="optype.readonly">{{optype.code}}</span>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-form-label col-form-label-sm col-2">状态</label>
+                    <div class="col-3">
+                        <select class="form-control form-control-sm" name="state" [(ngModel)]="optype.state"
+                                required>
+                            <option value=1>正常</option>
+                            <option value=0>注销</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm row">
+                    <label class="col-form-label col-form-label-sm col-2">备注</label>
+                    <div class="col-8">
+                    <textarea class="form-control form-control-sm" rows="5" name="notes" maxlength="200"
+                              [(ngModel)]="optype.notes" placeholder="备注"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="text-right p-1">
+        <a class="btn btn-primary btn-round iconfont icon-edit" *ngIf="optype.readonly"
+           (click)="optype.readonly = false;" title="编辑"></a>
+        <button class="btn btn-green border-radius hand" (click)="add(form)"
+                *ngIf="!optype.op_type_id && !optype.readonly">新&#12288;增
+        </button>
+        <button class="btn btn-green border-radius hand" (click)="edit(form)"
+                *ngIf="optype.op_type_id && !optype.readonly">修&#12288;改
+        </button>
+        <button class="btn border-radius hand" (click)="_onCancel()" *ngIf="!optype.readonly">返&#12288;回</button>
+    </div>
+</div>

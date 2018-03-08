@@ -1,0 +1,11 @@
+<div class="card w-100 h-100 relative" >
+    <div class="card-block w-100 h-100 overflow-hidden" (mousedown)="_mousedown($event)" (mousemove)="_mousemove($event)" (mouseup)="_mouseup($event)">
+        <div id='canvas' class="hand" #container [ngStyle]="{'zoom':scale,'width':'200%','height':'200%','transform':'translate('+mouseEvent.moveX+'px,'+mouseEvent.moveY+'px)'}"
+        ></div>
+    </div>
+    <div class="fixed-bottom-right">
+        <a class="btn btn-sm btn-primary btn-psm text-white" (click)="zoomOut()">放大</a>
+        <a class="btn btn-sm btn-primary text-white" (click)="zoomIn()">缩小</a>
+        <a *ngIf="!isIE" class="btn btn-sm btn-primary btn-psm text-white" [href]="downloadUrl" target="_blank" [download]="downloadName">下载SVG</a>
+    </div>
+</div>

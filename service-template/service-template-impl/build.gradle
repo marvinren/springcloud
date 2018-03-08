@@ -1,0 +1,5 @@
+apply from: "$rootDir/gradle/service.gradle"
+
+dependencies {
+    compile project(':service-template:service-template-api')
+}

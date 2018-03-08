@@ -1,0 +1,42 @@
+<div class="demand-edit-template-wrap card border-0 bg-transparent text-base">
+    <div class="card-header light-title border-0 bg-transparent pt-2 pb-0 pl-1 pr-1">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" (click)="nav = 1" [ngClass]="{'active': nav === 1}">动态模板</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="nav = 2" [ngClass]="{'active': nav === 2}">模板2</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="nav = 3" [ngClass]="{'active': nav === 3}">模板3</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="nav = 4" [ngClass]="{'active': nav === 4}">模板4</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="tab-content text-base">
+        <div class="tab-pane" [ngClass]="{'active': nav === 1}">
+            <div class="card-block p-1">
+                <ai-demand-edit-template-content [template]="{type:1}"></ai-demand-edit-template-content>
+            </div>
+        </div>
+        <div class="tab-pane" [ngClass]="{'active': nav === 2}">
+            <div class="card-block p-1">
+                <ai-demand-edit-template-content [template]="{type:2}"></ai-demand-edit-template-content>
+            </div>
+        </div>
+        <div class="tab-pane" [ngClass]="{'active': nav === 3}">
+            <div class="card-block p-1">
+                <ai-demand-edit-template-content [template]="{type:3}"></ai-demand-edit-template-content>
+            </div>
+        </div>
+        <div class="tab-pane" [ngClass]="{'active': nav === 4}">
+            <div class="card-block p-1">
+                <ai-demand-edit-template-content [template]="{type:4}"></ai-demand-edit-template-content>
+            </div>
+        </div>
+    </div>
+</div>

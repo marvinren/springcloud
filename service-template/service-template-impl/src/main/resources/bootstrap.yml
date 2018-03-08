@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: service-template
+  cloud:
+    config:
+      uri: http://localhost:8761/config
+  profiles:
+    active: #spring.profiles.active#

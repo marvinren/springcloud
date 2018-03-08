@@ -1,0 +1,443 @@
+<div *ngIf="template && template.type">
+
+    <div *ngIf="template.type === 1">
+        <div class="card border-0 p-0 m-0 bg-transparent pl-2 pr-2">
+            <div class="card-header light-title bg-transparent">
+                <span>需求详细信息</span>
+            </div>
+            <div class="card-block">
+                <div class="form-group form-group-sm row light-title">
+                    <label class="col-1 pl-0 col-form-label col-form-label-sm">修改内容:</label>
+                    <div class="col-11">
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">资费上下限</span>
+                        </label>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">产品上下线</span>
+                        </label>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">修改资费名称</span>
+                        </label>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">修改产品名称</span>
+                        </label>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">修改包名称</span>
+                        </label>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">修改资费标注</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 p-0 mt-2 bg-transparent">
+            <div class="card-header border-0 pl-0 bg-transparent">
+                <span>资费上下限信息</span>
+            </div>
+            <div class="card-block p-0">
+                <table class="table custom-table table-striped table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>项目类别</th>
+                        <th>酬金渠道名称</th>
+                        <th>计算公式</th>
+                        <th>上限标准</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-center text-info">
+                            1
+                        </td>
+                        <td></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center">
+                            <a class="hand iconfont icon-delete text-danger"></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="text-center text-info fs-sm">您还没有添加记录</div>
+            </div>
+        </div>
+
+
+        <div class="card border-0 p-0 mt-2 bg-transparent">
+            <div class="card-header border-0 pl-0 bg-transparent">
+                <span>产品上下限信息</span>
+            </div>
+            <div class="card-block p-0">
+                <table class="table custom-table table-striped table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>项目类别</th>
+                        <th>酬金渠道名称</th>
+                        <th>计算公式</th>
+                        <th>上限标准</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-center text-info">
+                            1
+                        </td>
+                        <td></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center">
+                            <a class="hand iconfont icon-delete text-danger"></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="text-center text-info fs-sm">您还没有添加记录</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="template.type === 2">
+        <div class="card border-0 p-0 pt-2 m-0 bg-transparent">
+            <div class="card-header light-title bg-transparent">
+                <span>详细规则</span>
+            </div>
+            <div class="card-block pt-2">
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">报表名称:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">数据共享:</label>
+                    <div class="col-3">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                    <label class="col-2 col-form-label col-form-label-sm">展现模式:</label>
+                    <div class="col-3">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">报表用途:</label>
+                    <div class="col-8">
+                        <textarea class="form-control form-control-sm" rows="3" placeholder=""></textarea>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">补发:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">扣发:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">调整:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">导入:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">导出:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">其他说明:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="template.type === 3">
+        <div class="card border-0 p-0 m-0 bg-transparent pl-2 pr-2">
+            <div class="card-header light-title bg-transparent">
+                <span>需求详细信息</span>
+            </div>
+            <div class="card-block">
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 pl-0 col-form-label col-form-label-sm">需求类型:</label>
+                    <div class="col-10">
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">规则调整</span>
+                        </label>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">账务调整</span>
+                        </label>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">其他</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 pl-0 col-form-label col-form-label-sm">需求类型描述:</label>
+                    <div class="col-10">
+                        <textarea class="form-control form-control-sm" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card border-0 p-0 mt-2 bg-transparent">
+            <div class="card-header border-0 pl-0 bg-transparent">
+                <span>规则调整</span>
+            </div>
+            <div class="card-block p-0">
+                <table class="table custom-table table-striped table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>项目类别</th>
+                        <th>酬金渠道名称</th>
+                        <th>计算公式</th>
+                        <th>上限标准</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-center text-info">
+                            1
+                        </td>
+                        <td></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center">
+                            <a class="hand iconfont icon-delete text-danger"></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="text-center text-info fs-sm">您还没有添加记录</div>
+            </div>
+        </div>
+
+        <div class="card border-0 p-0 mt-2 bg-transparent">
+            <div class="card-header border-0 pl-0 bg-transparent">
+                <span>规则调整</span>
+            </div>
+            <div class="card-block p-0">
+                <table class="table custom-table border-0 table-hover table-striped table-condensed">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>项目类别</th>
+                        <th>酬金渠道名称</th>
+                        <th>计算公式</th>
+                        <th>上限标准</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-center text-info">
+                            1
+                        </td>
+                        <td></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center">
+                            <a class="hand iconfont icon-delete text-danger"></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="text-center text-info fs-sm">您还没有添加记录</div>
+            </div>
+        </div>
+
+        <div class="card border-0 p-0 m-0 bg-transparent">
+            <div class="card-block pt-0">
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">补发:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">扣发:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">调整:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">导入:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">导出:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label class="col-2 col-form-label col-form-label-sm">其他说明:</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text"
+                               placeholder="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="template.type === 4">
+        <div class="card border-0 p-0 m-0 bg-transparent">
+            <div class="card-block p-0 m-0">
+                <div class="box row h-100 w-100 p-0 m-0">
+                    <div class="bg-white h-100 p-0 m-0 overflow-hidden" aiScrollBar style="flex-basis: 232px;">
+                        <ul class="list-group mt-2">
+                            <li class="list-group-item">
+                                ABCDEFGHIJKLMN
+                            </li>
+                            <li class="list-group-item">
+                                ABCDEFGHIJKLMN
+                            </li>
+                            <li class="list-group-item">
+                                ABCDEFGHIJKLMN
+                            </li>
+                            <li class="list-group-item">
+                                ABCDEFGHIJKLMN
+                            </li>
+                            <li class="list-group-item">
+                                ABCDEFGHIJKLMN
+                            </li>
+                            <li class="list-group-item">
+                                ABCDEFGHIJKLMN
+                            </li>
+                            <li class="list-group-item">
+                                ABCDEFGHIJKLMN
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex-1 bg-transparent h-100 p-0 m-0 overflow-hidden" aiScrollBar>
+                        <div class="card border-0 pl-1 pr-1 mt-2 bg-transparent">
+                            <div class="card-header pt-0 bg-transparent light-title">
+                                <span>活动内容详情</span>
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group form-group-sm row">
+                                    <label class="col-2 col-form-label col-form-label-sm">需求名称:</label>
+                                    <div class="col-9">
+                                        <input class="form-control form-control-sm" type="text"
+                                               placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm row">
+                                    <label class="col-2 col-form-label col-form-label-sm">预计成效:</label>
+                                    <div class="col-9">
+                                        <textarea class="form-control form-control-sm" rows="3"
+                                                  placeholder="" maxlength="200"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm row">
+                                    <label class="col-2 col-form-label col-form-label-sm">主要目的:</label>
+                                    <div class="col-9">
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">发展客户</span>
+                                        </label>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">提升收入</span>
+                                        </label>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">应对竞争</span>
+                                        </label>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">政策性支持</span>
+                                        </label>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">其他</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm row">
+                                    <label class="col-2 col-form-label col-form-label-sm">活动详情:</label>
+                                    <div class="col-9">
+                                        <textarea class="form-control form-control-sm" rows="10" id="post_editor"
+                                                  placeholder="" maxlength="200" name="content"
+                                                  [(ngModel)]="content"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

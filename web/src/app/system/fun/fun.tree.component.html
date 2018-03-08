@@ -1,0 +1,32 @@
+<ul class="list-group">
+    <section class="sys-tree-list-group" *ngFor="let item of funTree">
+        <li class="list-group-item border-dotted" *ngIf="item.show">
+            <div class="white-space" *ngIf="item.last_show"></div>
+            <i class="iconfont icon-more arraw"></i>
+            <div class="list-group-item-heading" ngbDropdown>
+                <i class="iconfont i-folder" [ngClass]="{'icon-folder-open':item.opened,'icon-folder-off':!item.opened}"
+                   *ngIf="item.children && item.children.length" (click)="item.opened = !item.opened"></i>
+                <i class="iconfont icon-singlefile i-item" *ngIf="!item.children || !item.children.length"></i>
+                <span class="list-group-item-heading-text" [ngClass]="{'text-line-through':item.state === 0,'bg-warning':item.has_keyword}"
+                      (click)="_ononSelect(item)">{{'['+item.func_code+']'+item.name}}</span>
+                <a class="iconfont icon-more float-right btn-dropdown" ngbDropdownToggle></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" *ngIf="item.func_type === 'C'" (click)="_onSelectMenu({operate_type: 'C', item: item})">
+                        <i class="iconfont icon-plus mr-1"></i>新增
+                    </a>
+                    <a class="dropdown-item" (click)="_onSelectMenu({operate_type: 'U', item: item})">
+                        <i class="iconfont icon-edit mr-1"></i>编辑
+                    </a>
+                    <a class="dropdown-item" (click)="_onSelectMenu({operate_type: 'D', item: item})">
+                        <i class="iconfont icon-delete mr-1"></i>删除
+                    </a>
+                </div>
+            </div>
+            <div *ngIf="item.children && item.children.length">
+                <ai-system-fun-tree [funTree]="item.children" (onSelectMenu)="_onSelectMenu($event)"
+                                    (onSelect)="_ononSelect($event)"
+                                    *ngIf="item.opened"></ai-system-fun-tree>
+            </div>
+        </li>
+    </section>
+</ul>

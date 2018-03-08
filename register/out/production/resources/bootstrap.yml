@@ -1,0 +1,19 @@
+spring:
+    application:
+        name: registry
+    profiles:
+        active: dev,native
+    cloud:
+      config:
+        server:
+          native:
+            searchLocations: file:${user.dir}/register-config-repo
+          fail-fast: true
+          prefix: /config
+          bootstrap: true
+
+
+
+info:
+    project:
+        version: #project.version#

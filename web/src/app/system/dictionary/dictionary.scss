@@ -1,0 +1,19 @@
+.dict-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  .dict-wrap-header {
+    flex-basis: 54px;
+    height: 54px;
+  }
+  .dict-wrap-content {
+    flex: 1;
+  }
+}

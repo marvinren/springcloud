@@ -1,0 +1,33 @@
+<ul class="list-group">
+    <section class="sys-tree-list-group" *ngFor="let item of orgTree">
+        <li class="list-group-item border-dotted"  *ngIf="item.show">
+                <div class="white-space" *ngIf="item.last_show"></div>
+                <i class="iconfont icon-more arraw"></i>
+                <div class="list-group-item-heading" ngbDropdown>
+                    <i class="iconfont i-folder" [ngClass]="{'icon-folder-open':item.opened,'icon-folder-off':!item.opened}"
+                       *ngIf="item.children_count" (click)="toggleChildren(item)"></i>
+                    <i class="iconfont icon-singlefile i-item" *ngIf="!item.children_count "></i>
+                    <span class="list-group-item-heading-text" [ngClass]="{'text-line-through':item.state === 0,'bg-warning':item.has_keyword}"
+                          (click)="_onSelect(item)">{{'['+item.code+']'+item.organize_name}}</span>
+                    <a class="iconfont icon-more float-right btn-dropdown" ngbDropdownToggle></a>
+                    <!-- 菜单 -->
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" (click)="_onSelectMenu({operate_type: 'C', item: item})">
+                            <i class="iconfont icon-plus mr-1"></i>新增
+                        </a>
+                        <a class="dropdown-item" (click)="_onSelectMenu({operate_type: 'U', item: item})">
+                            <i class="iconfont icon-edit mr-1"></i>编辑
+                        </a>
+                        <a class="dropdown-item" *ngIf="item.state===1" (click)="_onSelectMenu({operate_type: 'D', item: item})">
+                            <i class="iconfont icon-delete mr-1"></i>删除
+                        </a>
+                    </div>
+                </div>
+                <div *ngIf="item.children && item.children.length" style="opacity: 1;">
+                    <ai-system-org-tree [orgTree]="item.children" [readonly]="readonly" (onSelectMenu)="_onSelectMenu($event)"
+                                        (onSelect)="_onSelect($event)"
+                                        *ngIf="item.opened"></ai-system-org-tree>
+                </div>
+        </li>
+    </section>
+</ul>

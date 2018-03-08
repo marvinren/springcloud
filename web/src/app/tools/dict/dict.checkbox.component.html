@@ -1,0 +1,9 @@
+<label class="custom-control custom-checkbox" *ngFor="let item of list">
+    <input type="checkbox" class="custom-control-input" name="{{name||'ck_'+item.param_no}}"
+           [(ngModel)]="checkbox['' + item.param_no]" (change)="_onChange()">
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description text-base">{{item.param_name}}</span>
+</label>
+<div *ngIf="!list || !list.length">
+<ai-loading-select></ai-loading-select>
+</div>

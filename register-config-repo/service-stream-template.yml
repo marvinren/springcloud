@@ -1,0 +1,49 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+  client:
+
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+ribbon:
+  ConnectTimeout: 500
+  ReadTimeout: 10000
+  OkToRetryOnAllOperations: false
+  MaxAutoRetriesNextServer: 0
+  MaxAutoRetries: 0
+
+management:
+  security:
+    enabled: false
+
+
+logging:
+  level:
+    com.ai.qmc: DEBUG
+  file: logs/service-stream-template.log
+
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 10.12.1.22:9092
+          zk-nodes: 10.12.1.22:2181
+          minPartition: 1
+          autoCreateTopics: true
+          autoAddPartitions: true
+      bindings:
+        destineationa:
+          destination: test
+          group: group-1
+          consumer:
+            concurrency: 1
+            partitioned: false
+        sourcea:
+          destination: test
+          producer:
+            partitionCount: 1

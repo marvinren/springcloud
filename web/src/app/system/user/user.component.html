@@ -1,0 +1,17 @@
+<div class="search-list-wrap h-100">
+    <div class="card border-0">
+        <div class="card-header text-headline border-0 bg-transparent pt-3 relative">
+            <h6 class="border-theme border-left-1 p-1 pl-2 pb-0 mb-0 text-headline">员工管理</h6>
+        </div>
+    </div>
+    <div class="user-wrap">
+        <div class="row h-100 py-1 px-4">
+            <div class="card border-0 col-5 p-0 h-100">
+                <ai-selector-org [checkbox]="false" (onSubmit)="onSelectOrg($event)" class="h-100"></ai-selector-org>
+            </div>
+            <div class="card border-0 col-7 p-0 pl-2 h-100" >
+                <ai-system-user-list [currentOrg]="currentOrg" class="h-100"></ai-system-user-list>
+            </div>
+        </div>
+    </div>
+</div>

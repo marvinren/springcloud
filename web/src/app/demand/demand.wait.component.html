@@ -1,0 +1,149 @@
+<div class="search-list-wrap demand-wait-wrap">
+    <div class="card">
+        <div class="card-header text-headline border-0 bg-transparent pt-3 relative">
+            <h6 class="border-theme border-left-1 p-1 pl-2 pb-0 mb-0 text-headline">待办工单</h6>
+            <div class="card-header-right center">
+                <div class="header-search-input">
+                    <input type="text" placeholder="需求名称、需求编码或需求提出人">
+                    <a>查询</a>
+                </div>
+                <div class="btn header-search-btn ml-1"><a (click)="searchBoxFlag = !searchBoxFlag">高级查询</a></div>
+            </div>
+        </div>
+        <div class="card-block pt-0 pb-0 mb-0 text-base" *ngIf="searchBoxFlag">
+            <div class="high-search pt-3">
+                <div class="form-group form-group-sm row">
+                    <label for="demand_name" class="col-1 col-form-label col-form-label-sm">需求名称:</label>
+                    <div class="col-5" id="demand_name">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchBox.demand_name"
+                               placeholder="需求名称">
+                    </div>
+                    <label for="demand_name" class="col-2 col-form-label col-form-label-sm">需求编号:</label>
+                    <div class="col-4" id="demand_number">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchBox.demand_number"
+                               placeholder="需求编号">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <div for="demand_creator" class="col-1 col-form-label col-form-label-sm">提交人:</div>
+                    <div class="col-2" id="demand_creator">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchBox.demand_creator"
+                               placeholder="需求提交人">
+                    </div>
+                    <div for="charge" class="col-1 col-form-label col-form-label-sm">负责人:</div>
+                    <div class="col-2" id="charge">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchBox.charge"
+                               placeholder="需求负责人">
+                    </div>
+                    <div for="submit_time" class="col-2 col-form-label col-form-label-sm">提交厂商时间:</div>
+                    <div class="col-4" id="submit_time">
+                        <div class="row">
+                            <div class="input-group input-group-sm col-5 pr-0">
+                                <input class="form-control form-control-sm" type="text"
+                                       ngbDatepicker #dp1="ngbDatepicker" (click)="dp1.toggle();dp2.close();"
+                                       placeholder="" [(ngModel)]="searchBox.submit_time_begin">
+                                <div class="input-group-addon py-0 hand" (click)="dp1.toggle();dp2.close();">
+                                    <i class="iconfont icon-calendar"></i>
+                                </div>
+                            </div>
+                            <span class="pl-1 pr-1">&#12288;到&#12288;</span>
+                            <div class="input-group input-group-sm col-5  pl-0">
+                                <input class="form-control form-control-sm" type="text"
+                                       ngbDatepicker #dp2="ngbDatepicker" (click)="dp2.toggle();dp1.close();"
+                                       placeholder="" [(ngModel)]="searchBox.submit_time_end">
+                                <div class="input-group-addon py-0 hand" (click)="dp2.toggle();dp1.close();">
+                                    <i class="iconfont icon-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label for="dept" class="col-1 col-form-label col-form-label-sm">所属部门:</label>
+                    <div class="col-2" id="dept">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchBox.dept"
+                               placeholder="所属部门">
+                    </div>
+                    <label for="flow" class="col-1 col-form-label col-form-label-sm">需求流程:</label>
+                    <div class="col-2" id="flow">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchBox.flow"
+                               placeholder="需求流程">
+                    </div>
+                    <label for="step" class="col-2 col-form-label col-form-label-sm">所处环节:</label>
+                    <div class="col-4" id="step">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchBox.step"
+                               placeholder="所处环节">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm row">
+                    <label for="type" class="col-1 col-form-label col-form-label-sm">所属类型:</label>
+                    <div class="col-2" id="type">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchBox.type"
+                               placeholder="所属类型">
+                    </div>
+                    <label for="flow" class="col-1 col-form-label col-form-label-sm">所属系统:</label>
+                    <div class="col-2" id="system">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchBox.system"
+                               placeholder="所属系统">
+                    </div>
+                    <label class="col-2 col-form-label col-form-label-sm"></label>
+                    <div class="col-4 text-right">
+                        <button class="btn btn-primary px-3 py-1 border-radius btn-sm hand">查&#12288;询</button>
+                        <button class="btn px-3 py-1 border-radius btn-sm ml-1 mr-1 hand">重&#12288;置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-block mt-0 pt-0 text-base">
+            <table class="table custom-table table-striped table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>需求编码</th>
+                    <th>需求名称</th>
+                    <th>需求提出人</th>
+                    <th>所处环节</th>
+                    <th>创建时间</th>
+                    <th>要求完成时限</th>
+                    <th>剩余时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="text-center">
+                    <td class="text-primary">1</td>
+                    <td>00SC201512310630</td>
+                    <td class="text-left break nowrap">家庭网络扩容需求</td>
+                    <td>张三</td>
+                    <td>业内支部员工会签</td>
+                    <td>2015-12-31 12:31:00</td>
+                    <td>8</td>
+                    <td>剩余6小时</td>
+                </tr>
+                <tr class="text-center">
+                    <td class="text-primary">1</td>
+                    <td>00SC201512310630</td>
+                    <td class="text-left break nowrap">家庭网络扩容需求</td>
+                    <td>张三</td>
+                    <td>业内支部员工会签</td>
+                    <td>2015-12-31 12:31:00</td>
+                    <td>8</td>
+                    <td>剩余6小时</td>
+                </tr>
+                <tr class="text-center">
+                    <td class="text-primary">1</td>
+                    <td>00SC201512310630</td>
+                    <td class="text-left break nowrap">家庭网络扩容需求</td>
+                    <td>张三</td>
+                    <td>业内支部员工会签</td>
+                    <td>2015-12-31 12:31:00</td>
+                    <td>8</td>
+                    <td>剩余6小时</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="text-center mt-1 mb-1">
+                <a>加载更多</a>
+            </div>
+        </div>
+    </div>
+</div>

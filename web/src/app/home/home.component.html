@@ -1,0 +1,21 @@
+<div class="container w-100 h-100 p-0 pt-2">
+    <div class="center justify-content-start row h-100 w-100 p-0 m-0">
+        <div class="home-sidebar h-100 p-0 m-0 overflow-hidden ps-theme-light" aiScrollBar [config]="scrollConfig" style="flex-basis: 186px;width:186px;" *ngIf="toggleFlag">
+            <ai-home-siderbar></ai-home-siderbar>
+        </div>
+        <div class="h-100 v-center p-0 m-0" style="flex-basis: 10px;width:10px;border-left:1px solid #00cc99 ">
+            <div class="flex-1 siderbar-btn">
+                <div class="btn-box hand" (click)="toggleBar()">
+                    <div class="iconfont icon-triangle rolate135 btn-part-top"></div>
+                    <div class="btn-part-mid" [class.rolate180]="toggleFlag">
+                        <i class="iconfont icon-triangle text-white"></i>
+                    </div>
+                    <div class="iconfont icon-triangle rolate225 btn-part-bottom"></div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-1 bg-white h-100 p-0 m-0 overflow-hidden border" aiScrollBar [alwaysShow]="true" [resetOnRouteChange]="true">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

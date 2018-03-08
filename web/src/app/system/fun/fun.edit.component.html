@@ -1,0 +1,83 @@
+<div class="right-editor-wrap">
+    <div class="card border-0 editor-head">
+        <div class="modal-header border-0 p-0">
+            <a class="btn iconfont icon-back rolate180 flipx pt-1 pb-1 pl-2 pr-2" (click)="_onCancel()"></a>
+        </div>
+        <div class="card-header text-headline border-0 bg-transparent py-0 relative">
+            <h6 class="border-theme border-bottom px-0 py-2 m-0 text-headline">
+                功能菜单信息
+            </h6>
+            <div class="absolute-top-right pr-3">
+                <button class="btn btn-sm btn-primary border-radius hand" (click)="addFun(form)" [class.btn-danger]="!form.valid" [disabled]="!form.valid"
+                        *ngIf="!fun.func_id && !fun.readonly">新&#12288;增</button>
+                <button class="btn btn-sm btn-primary border-radius hand" (click)="editFun(form)" [class.btn-danger]="!form.valid" [disabled]="!form.valid"
+                        *ngIf="fun.func_id && !fun.readonly">修&#12288;改</button>
+                <button class="btn btn-sm border-radius hand" (click)="_onCancel()" *ngIf="!fun.readonly">返&#12288;回</button>
+            </div>
+        </div>
+    </div>
+    <div class="editor-content" aiScrollBar [alwaysShow]="true">
+        <form name="form" #form="ngForm" class="card-block text-base form-sm">
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2">菜单名称</label>
+                <div class="col-4">
+                    <input class="form-control form-control-sm" type="text" name="fun_name" maxlength="20"
+                           required [(ngModel)]="fun.name" placeholder="菜单名称" *ngIf="!fun.readonly">
+                    <span class="form-control form-control-sm form-border-bottom" *ngIf="fun.readonly">{{fun.name}}</span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2">菜单编号</label>
+                <div class="col-4">
+                    <input class="form-control form-control-sm" type="text" name="func_code" maxlength="20"
+                           required [(ngModel)]="fun.func_code" placeholder="菜单编号" *ngIf="!fun.readonly">
+                    <span class="form-control form-control-sm form-border-bottom" *ngIf="fun.readonly">{{fun.func_code}}</span>
+                </div>
+                <label class="col-form-label col-form-label-sm col-2">排序序号</label>
+                <div class="col-4">
+                    <input class="form-control form-control-sm" type="number" step="1" name="fun_seq" max="100" min="1"
+                           required [(ngModel)]="fun.fun_seq" placeholder="排序序号" *ngIf="!fun.readonly">
+                    <span class="form-control form-control-sm form-border-bottom" *ngIf="fun.readonly">{{fun.fun_seq}}</span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2">菜单路径</label>
+                <div class="col-10">
+                    <input class="form-control form-control-sm" type="text" name="view_path" maxlength="50"
+                           [(ngModel)]="fun.view_path" placeholder="菜单路径,非必填" *ngIf="!fun.readonly">
+                    <span class="form-control form-control-sm form-border-bottom" *ngIf="fun.readonly">{{fun.view_path}}</span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2">菜单类型</label>
+                <div class="col-4">
+                    <select class="form-control form-control-sm" name="func_type" required [(ngModel)]="fun.func_type" *ngIf="!fun.readonly">
+                        <option value='H'>html</option>
+                        <option value='C'>client</option>
+                    </select>
+                    <span class="form-control form-control-sm form-border-bottom" *ngIf="fun.readonly">{{fun.func_type|funTypePipe}}</span>
+                </div>
+                <label class="col-form-label col-form-label-sm col-2">状态</label>
+                <div class="col-4">
+                    <select class="form-control form-control-sm" name="state" required [(ngModel)]="fun.state" *ngIf="!fun.readonly">
+                        <option value=1>正常</option>
+                        <option value=0>注销</option>
+                    </select>
+                    <span class="col-form-label-sm" *ngIf="fun.readonly">{{fun.state|statePipe}}</span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2">备注</label>
+                <div class="col-10">
+                    <textarea class="form-control form-control-sm" rows="5" name="notes" maxlength="200"
+                              [(ngModel)]="fun.notes" placeholder="备注" *ngIf="!fun.readonly"></textarea>
+                    <p *ngIf="fun.readonly">{{fun.notes}}</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="fixed-bottom-right text-right p-1">
+        <a class="btn btn-primary btn-round iconfont icon-edit" *ngIf="fun.readonly" (click)="fun.readonly = false;"
+           title="编辑"></a>
+    </div>
+</div>

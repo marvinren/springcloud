@@ -1,0 +1,42 @@
+<div class="search-list-wrap demand-edit-wrap relative">
+    <div class="top-button">
+        <button class="btn btn-primary hand border-radius box-shadow">保&#12288;存</button>
+        <button class="btn btn-green hand border-radius ml-1 box-shadow" (click)="showSubmit()">提&#12288;交</button>
+    </div>
+    <div class="card">
+        <div class="card-header text-headline border-0 bg-transparent pt-3 relative">
+            <h6 class="border-theme border-left-1 p-1 pl-2  mb-0 text-headline">创建需求</h6>
+        </div>
+        <div class="card-block p-4">
+            <ul class="nav main-nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" (click)="nav = 1" [ngClass]="{'active': nav === 1}">基本信息</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="nav = 2" [ngClass]="{'active': nav === 2}">需求模板</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="nav = 3" [ngClass]="{'active': nav === 3}">附件及其他信息</a>
+                </li>
+            </ul>
+            <div class="tab-content main-tab-content text-base">
+                <div class="tab-pane" [ngClass]="{'active': nav === 1}">
+                    <ai-demand-edit-base [template]="template"></ai-demand-edit-base>
+                </div>
+                <div class="tab-pane" [ngClass]="{'active': nav === 2}">
+                    <ai-demand-edit-template></ai-demand-edit-template>
+                </div>
+                <div class="tab-pane" [ngClass]="{'active': nav === 3}">
+                    <ai-demand-edit-attach></ai-demand-edit-attach>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-model" *ngIf="demand">
+        <div class="right-model-bg" *ngIf="rightModel==='show'" (click)="closeSubmit()"></div>
+        <div class="right-model-content" [class.right-fade-in]="rightModel==='show'"
+             [class.right-fade-out]="rightModel==='false'" [style.width]="'700px'">
+            <ai-demand-submit (onClose)="closeSubmit()" (onSubmit)="onSubmit($event)"></ai-demand-submit>
+        </div>
+    </div>
+</div>

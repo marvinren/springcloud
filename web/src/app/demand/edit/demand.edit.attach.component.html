@@ -1,0 +1,140 @@
+<div class="demand-edit-attach-wrap card border-0 bg-transparent text-base pb-4 relative">
+    <div class="card-header text-subtitle border-0 light-title bg-transparent pt-2 pb-2 pl-1 pr-1">
+        <span>附件信息</span>
+        <a class="iconfont icon-upload text-white bg-success fs-xs border-radius p-1 ml-2"></a>
+        <a class="iconfont icon-download text-white bg-info fs-xs border-radius p-1 ml-2"></a>
+    </div>
+    <div class="card-block p-0 pb-2 pt-3">
+        <table class="table custom-table table-striped table-condensed table-hover">
+            <thead>
+            <tr>
+                <th>
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input"
+                               [(ngModel)]="selectedAllFlag" (change)="toggleSelectAll()">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">全选</span>
+                    </label>
+                </th>
+                <th>附件名称</th>
+                <th>附件类型</th>
+                <th>提交人</th>
+                <th>提交环节</th>
+                <th>提交时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="text-center">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description text-base">&#12288;&#12288;</span>
+                    </label>
+                </td>
+                <td>图片</td>
+                <td class="text-center">图片</td>
+                <td class="text-center">王五</td>
+                <td class="text-center">审批</td>
+                <td class="text-center">
+                    2017-06-06 12:00:00
+                </td>
+                <td class="text-center">
+                    <a class="hand iconfont icon-delete text-danger"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description text-base">&#12288;&#12288;</span>
+                    </label>
+                </td>
+                <td>图片</td>
+                <td class="text-center">图片</td>
+                <td class="text-center">王五</td>
+                <td class="text-center">审批</td>
+                <td class="text-center">
+                    2017-06-06 12:00:00
+                </td>
+                <td class="text-center">
+                    <a class="hand iconfont icon-delete text-danger"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description text-base">&#12288;&#12288;</span>
+                    </label>
+                </td>
+                <td>图片</td>
+                <td class="text-center">图片</td>
+                <td class="text-center">王五</td>
+                <td class="text-center">审批</td>
+                <td class="text-center">
+                    2017-06-06 12:00:00
+                </td>
+                <td class="text-center">
+                    <a class="hand iconfont icon-delete text-danger"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description text-base">&#12288;&#12288;</span>
+                    </label>
+                </td>
+                <td>图片</td>
+                <td class="text-center">图片</td>
+                <td class="text-center">王五</td>
+                <td class="text-center">审批</td>
+                <td class="text-center">
+                    2017-06-06 12:00:00
+                </td>
+                <td class="text-center">
+                    <a class="hand iconfont icon-delete text-danger"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description text-base">&#12288;&#12288;</span>
+                    </label>
+                </td>
+                <td>图片</td>
+                <td class="text-center">图片</td>
+                <td class="text-center">王五</td>
+                <td class="text-center">审批</td>
+                <td class="text-center">
+                    2017-06-06 12:00:00
+                </td>
+                <td class="text-center">
+                    <a class="hand iconfont icon-delete text-danger"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-header border-0 light-title bg-transparent pt-2 pb-2 pl-1 pr-1">
+        <span>其他信息</span>
+    </div>
+    <div class="card-block p-1 pt-4">
+        <div class="form-group form-group-sm row">
+            <label class="col-form-label col-form-label-sm col-3">申请紧急需求流程原因</label>
+            <div class="col-8">
+                <textarea class="form-control form-control-sm textarea" maxlength="200"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="mt-2">
+        <button type="button" class="btn btn-theme text-white border-radius hand float-right">下一步>></button>
+    </div>
+</div>

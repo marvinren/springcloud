@@ -1,0 +1,77 @@
+.login-wrapper {
+  background: -webkit-linear-gradient(top, #0b77b5, $theme);
+  background: -moz-linear-gradient(top, #0b77b5, $theme);
+  background: linear-gradient(to bottom, #0b77b5, $theme);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  .login-wrapper-bg {
+    position: absolute;
+    width: 1920px;
+    height: 1080px;
+    top: 50%;
+    left: 50%;
+    padding: 0;
+    margin: 0;
+    margin-left: -960px;
+    margin-top: -540px;
+    background: url('../../assets/images/login/login-bg-1920.jpg') no-repeat;
+    .container {
+      height: 100%;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0;
+      position: relative;
+      .login-form {
+        right: 184px;
+        border: 1px solid #d7d7d7;
+        width: 400px;
+        height: 475px;
+        border-radius: 5px;
+        background: #e7f1f7;
+        padding-left: 3rem;
+        padding-right: 3rem;
+        .form-group input {
+          border-radius: 5px;
+          overflow: hidden;
+          background: #fff;
+        }
+        .shadow-invalid {
+          border: 1px solid #d9534f;
+        }
+        .form-group {
+          margin-bottom: 1.875rem;
+        }
+        .code-example {
+          border: 1px solid #d7d7d7;
+          border-radius: 5px;
+          overflow: hidden;
+          padding: 0;
+          text-align: center;
+          background: #fff;
+        }
+        .btn-code-example {
+          position: absolute;
+          right: 0;
+        }
+        .btn-changepwd {
+          color: #07202c;
+          font-size: $font-size-sm;
+        }
+        .btn-changepwd:hover, .btn-code-example:hover {
+          color: $theme;
+        }
+      }
+      .login-title {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        color: #07202c;
+        font-size: 24px;
+        font-weight: bold;
+      }
+    }
+  }
+}

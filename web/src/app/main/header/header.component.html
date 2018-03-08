@@ -1,0 +1,76 @@
+<div class="header fixed-top">
+    <div class="center justify-content-between row header-brand">
+        <a class="navbar-brand" routerLink="home" (click)="back()" >
+            <img src="../../../assets/images/common/logo.png">
+        </a>
+        <div class="form-group-lg">
+            <div class="input-group header-search">
+                <input type="search" class="form-control" placeholder="搜索">
+                <div class="input-group-addon py-0 iconfont icon-search border-0"></div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-toggleable-md header-navbar">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <!--li class="nav-item active">
+                        <a class="nav-link" routerLink="home" >首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="system">系统管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="workflow">流程管理</a>
+                    </li-->
+                    <!-- class="nav-item">
+                        <a class="nav-link">查询统计</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">支持管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">告警管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">报表管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">武器库</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">需求模板</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="workflow">流程管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="system">系统管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">帮助</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">业务视图</a>
+                    </li-->
+                    <li class="nav-item"  *ngFor="let rootItem of funTree" [class.active]="nav === rootItem.func_code">
+                        <a class="nav-link" routerLink="../{{rootItem.view_path}}" (click)="nav = rootItem.func_code">{{rootItem.name}}</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="logout()">
+                            <i class="iconfont icon-logout fs-base"></i>
+                            <span>退出</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,10 @@
+<div class="card border-0">
+    <div class="card-block p-0" style="opacity: 1;">
+        <textarea [id]="elementId" name="post_editor" class="form-control form-control-sm" rows="3"></textarea>
+    </div>
+    <form name="form" #fileForm="ngForm">
+        <input #fileInput name="fileInput" type="file" [(ngModel)]="docFile" class="hide" (change)="fileChange()">
+        <input #imgInput name="imgInput" type="file" [(ngModel)]="imgFile" class="hide"
+               accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" (change)="imgChange()">
+    </form>
+</div>

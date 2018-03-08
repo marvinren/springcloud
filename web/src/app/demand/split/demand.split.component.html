@@ -1,0 +1,99 @@
+<div class="demand-split-wrap">
+    <div class="card border-0">
+        <div class="card-header border-0 light-title bg-transparent pt-2 pb-2 pl-1 pr-1">
+            <span>功能点拆分</span>
+            <a class="iconfont icon-plus bg-info text-white fs-xs border-radius p-1" *ngIf="!openFlag" (click)="openFlag = true" ></a>
+            <a class="iconfont icon-minus bg-info text-white fs-xs border-radius p-1" *ngIf="openFlag" (click)="openFlag = false" ></a>
+        </div>
+        <div class="card-block p-1 pt-4 form-sm text-base" *ngIf="openFlag">
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2 w-12">功能点名称:</label>
+                <div class="col-2 w-54">
+                    <input class="form-control form-control-sm" type="text"
+                           placeholder="功能点名称">
+                </div>
+                <label class="col-form-label col-form-label-sm col-2 w-12">涉及联调:</label>
+                <div class="col-2 w-21">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2 w-12">功能类型:</label>
+                <div class="col-2 w-21">
+                    <select class="form-control form-control-sm"></select>
+                </div>
+                <label class="col-form-label col-form-label-sm col-2 w-12">改造方式:</label>
+                <div class="col-2 w-21">
+                    <select class="form-control form-control-sm"></select>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2 w-12">复杂程度:</label>
+                <div class="col-2 w-21">
+                    <select class="form-control form-control-sm"></select>
+                </div>
+                <label class="col-form-label col-form-label-sm col-2 w-12">功能点类型:</label>
+                <div class="col-2 w-21">
+                    <select class="form-control form-control-sm"></select>
+                </div>
+            </div>
+            <div class="form-group form-group-sm row">
+                <label class="col-form-label col-form-label-sm col-2 w-12">工作说明:</label>
+                <div class="col-2 w-66">
+                    <textarea class="form-control form-control-sm" placeholder="功能点名称" rows="10"></textarea>
+                </div>
+                <div class="col-2 w-21 center align-items-end">
+                    <button type="button" class="btn btn-sm border-radius btn-info hand">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card border-0 mt-4">
+        <div class="card-block px-0 pb-2">
+            <table class="table custom-table table-striped table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>功能点名称</th>
+                    <th>预估工作量</th>
+                    <th>功能点类型</th>
+                    <th>功能点说明</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text-center text-info">
+                        1
+                    </td>
+                    <td>图片功能点名称</td>
+                    <td class="text-center">分析报告</td>
+                    <td class="text-center">新增简单进程</td>
+                    <td class="break">新增简单进程</td>
+                    <td class="text-center">
+                        <a class="hand iconfont icon-delete text-danger"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center text-info">
+                        2
+                    </td>
+                    <td>图片功能点名称</td>
+                    <td class="text-center">分析报告</td>
+                    <td class="text-center">新增简单进程</td>
+                    <td class="break">新增简单进程</td>
+                    <td class="text-center">
+                        <a class="hand iconfont icon-delete text-danger"></a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

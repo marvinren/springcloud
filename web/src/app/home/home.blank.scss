@@ -1,0 +1,120 @@
+.home-blank-wrap {
+  .card {
+    background: #fcfcfc;
+  }
+  .dashboard {
+    .swiper-container {
+      padding: 0;
+      .swiper-wrapper {
+        .swiper-slide:first-child {
+          border-left: none;
+        }
+        .swiper-slide {
+          padding: 16px;
+          border-left: 2px solid;
+          border-image: url('../../assets/images/home/fun-border.png') 0 14 0 14 stretch;
+          width: 139px;
+          text-align: center;
+          img {
+            display: inline-block;
+            width: 90%;
+            cursor: pointer;
+          }
+          .slide-echart {
+            width: 500px;
+            height: 424px;
+            // zoom: 0.28;
+            transform: scale(0.28);
+            transform-origin:top left;
+            margin-bottom: -320px;
+          }
+          label {
+            font-size: $font-size-xs;
+            color: #444;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .swiper-button-prev, .swiper-button-next {
+      background: transparent !important;
+      font-size: 2.5rem;
+      height: 36px;
+      line-height: 36px;
+    }
+    .swiper-button-prev {
+      left: 0.75rem;
+    }
+    .swiper-button-next {
+      right: 0.75rem;
+    }
+  }
+  .list-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .card {
+      flex: 0 0 48.8%;
+      max-width: 48.8%;
+      .card-header, .card-block {
+        padding: 0.5rem;
+      }
+      .card-header {
+        font-size: $font-size-sm;
+        font-weight: bold;
+        padding: 0.1875rem 0.5rem;
+      }
+      .card-header-dark {
+        background: $theme-bg;
+        color: #ffffff;
+      }
+      .card-header-light {
+        border: 0;
+        background: #ffffff;
+        color: $color-dark;
+      }
+
+      .card-block {
+        background: #ffffff;
+        color: $color-dark;
+        font-size: $font-size-xs;
+        padding-top: 1rem;
+        padding-bottom: 3rem;
+        .break-ellipsis {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .list-group {
+          padding-left: 0.5rem;
+          .list-group-item {
+            border: 0;
+            padding: 0;
+            padding-right: 2rem;
+            font-size: 0.8125rem;
+            height: 1.625rem;
+            line-height: 1.625rem;
+            width: 100%;
+            cursor: pointer;
+          }
+          .list-group-item:hover {
+            color: #00cc99;
+          }
+        }
+        .btn-more {
+          font-size: $font-size-xs;
+          color: $color-dark;
+          position: absolute;
+          bottom: 1rem;
+          right: 0.75rem;
+        }
+        .btn-more:hover {
+          color: #00cc99;
+        }
+      }
+      .card-block-border {
+        border: 1px solid #e1e1e1;
+      }
+    }
+  }
+}

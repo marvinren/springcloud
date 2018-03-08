@@ -1,0 +1,27 @@
+apply from: "$rootDir/gradle/fragment/docker.gradle"
+
+dependencies{
+
+    // tag::jetty[]
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    // end::jetty[]
+
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+
+    compile('org.springframework.cloud:spring-cloud-config-server')
+    compile("org.springframework.cloud:spring-cloud-starter-eureka-server")
+    compile("org.springframework.cloud:spring-cloud-starter-zuul")
+    compile("org.springframework.cloud:spring-cloud-starter-eureka")
+
+    /*auth server: Oauth2*/
+    compile("org.springframework.cloud:spring-cloud-starter-oauth2")
+    compile("org.springframework.security:spring-security-jwt")
+
+    /*test*/
+    compile "com.alibaba:fastjson:1.2.15"
+    testCompile "junit:junit:${junitVersion}"
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}

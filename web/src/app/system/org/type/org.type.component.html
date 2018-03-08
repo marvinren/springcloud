@@ -1,0 +1,3 @@
+<select class="form-control form-control-sm" name="org_type" required [(ngModel)]="selectedVal" (change)="onChange()">
+    <option *ngFor="let item of orgtypelist" value={{item.organize_type_id}}>{{item.organize_type_name}}</option>
+</select>
